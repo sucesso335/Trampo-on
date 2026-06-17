@@ -21,16 +21,15 @@
         <label>Valor desejado (R$ 200 a R$ 8.000)</label>
         <input type="number" id="valor" min="200" max="8000" placeholder="Ex: 1000">
 
-        <label>Parcelas</label>
+        <label>Número de Parcelas</label>
         <select id="parcelas">
-            <option value="12">12x</option>
-            <option value="24">24x</option>
-        </select>
+            </select>
 
         <button class="btn-simular" onclick="simular()">Simular Agora</button>
 
         <div id="resultado">
             <p><strong>Valor solicitado:</strong> R$ <span id="valSol"></span></p>
+            <p><strong>Parcela:</strong> <span id="numParc"></span>x de <strong>R$ <span id="valParc"></span></strong></p>
             <p><strong>Entrada de Garantia:</strong> R$ <span id="valEntrada"></span></p>
             <br>
             <p style="font-size: 12px; color: #64748b;">Para liberar seu empréstimo, é necessário o pagamento da entrada de garantia.</p>
@@ -39,18 +38,35 @@
     </div>
 
     <script>
+        // Cria automaticamente as opções de 1x a 24x
+        const select = document.getElementById('parcelas');
+        for (let i = 1; i <= 24; i++) {
+            let opt = document.createElement('option');
+            opt.value = i;
+            opt.innerHTML = i + 'x';
+            select.appendChild(opt);
+        }
+
         function simular() {
-            let valor = document.getElementById('valor').value;
+            let valor = parseFloat(document.getElementById('valor').value);
+            let nParcelas = parseInt(document.getElementById('parcelas').value);
+            
             if(valor < 200 || valor > 8000) { alert("Valor deve ser entre 200 e 8000"); return; }
             
-            // Calculo simples da entrada (exemplo: 10% do valor)
-            let entrada = valor * 0.10;
+            // Cálculo: Valor + 30% de juros, dividido pelo número de parcelas
+            let valorComJuros = valor * 1.30;
+            let valorParcela = valorComJuros / nParcelas;
             
-            document.getElementById('valSol').innerText = valor;
+            // Entrada de garantia (10% do valor original)
+            let entrada = valor * 0.10; 
+            
+            document.getElementById('valSol').innerText = valor.toFixed(2);
+            document.getElementById('numParc').innerText = nParcelas;
+            document.getElementById('valParc').innerText = valorParcela.toFixed(2);
             document.getElementById('valEntrada').innerText = entrada.toFixed(2);
             document.getElementById('resultado').style.display = 'block';
             
-            let msg = `Olá, quero liberar um empréstimo de R$ ${valor}. O valor da entrada é R$ ${entrada.toFixed(2)}. Como faço o pagamento?`;
+            let msg = `Olá, quero liberar um empréstimo de R$ ${valor}. Escolhi ${nParcelas}x de R$ ${valorParcela.toFixed(2)}. O valor da entrada é R$ ${entrada.toFixed(2)}. Como faço o pagamento da entrada?`;
             document.getElementById('linkPagamento').href = "https://wa.me/5532987194791?text=" + encodeURIComponent(msg);
         }
     </script>
