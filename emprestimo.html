@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simular Empréstimo | Trampos On</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background-color: #f8fafc; }
+        .container { max-width: 400px; margin: 0 auto; background: white; padding: 25px; border-radius: 16px; border: 1px solid #e2e8f0; }
+        h1 { font-size: 20px; text-align: center; margin-bottom: 20px; }
+        label { display: block; margin-top: 15px; font-weight: bold; font-size: 14px; }
+        input, select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; }
+        .btn-simular { width: 100%; background-color: #0f172a; color: white; padding: 12px; border: none; border-radius: 8px; margin-top: 20px; cursor: pointer; font-weight: bold; }
+        #resultado { margin-top: 20px; padding: 15px; background: #f1f5f9; border-radius: 8px; display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simular Empréstimo</h1>
+        
+        <label>Valor desejado (R$ 200 a R$ 8.000)</label>
+        <input type="number" id="valor" min="200" max="8000" placeholder="Ex: 1000">
+
+        <label>Parcelas</label>
+        <select id="parcelas">
+            <option value="12">12x</option>
+            <option value="24">24x</option>
+        </select>
+
+        <button class="btn-simular" onclick="simular()">Simular Agora</button>
+
+        <div id="resultado">
+            <p><strong>Valor solicitado:</strong> R$ <span id="valSol"></span></p>
+            <p><strong>Entrada de Garantia:</strong> R$ <span id="valEntrada"></span></p>
+            <br>
+            <p style="font-size: 12px; color: #64748b;">Para liberar seu empréstimo, é necessário o pagamento da entrada de garantia.</p>
+            <a id="linkPagamento" href="#" style="display:block; text-align:center; background:#22c55e; color:white; padding:10px; border-radius:8px; text-decoration:none; margin-top:10px;">Pagar Entrada via WhatsApp</a>
+        </div>
+    </div>
+
+    <script>
+        function simular() {
+            let valor = document.getElementById('valor').value;
+            if(valor < 200 || valor > 8000) { alert("Valor deve ser entre 200 e 8000"); return; }
+            
+            // Calculo simples da entrada (exemplo: 10% do valor)
+            let entrada = valor * 0.10;
+            
+            document.getElementById('valSol').innerText = valor;
+            document.getElementById('valEntrada').innerText = entrada.toFixed(2);
+            document.getElementById('resultado').style.display = 'block';
+            
+            let msg = `Olá, quero liberar um empréstimo de R$ ${valor}. O valor da entrada é R$ ${entrada.toFixed(2)}. Como faço o pagamento?`;
+            document.getElementById('linkPagamento').href = "https://wa.me/5532987194791?text=" + encodeURIComponent(msg);
+        }
+    </script>
+</body>
+</html>
