@@ -1,76 +1,13 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simular Empréstimo | Trampos On</title>
-    <style>
-        body { font-family: sans-serif; padding: 20px; background-color: #f8fafc; }
-        .container { max-width: 400px; margin: 0 auto; background: white; padding: 25px; border-radius: 16px; border: 1px solid #e2e8f0; }
-        h1 { font-size: 20px; text-align: center; margin-bottom: 20px; }
-        label { display: block; margin-top: 15px; font-weight: bold; font-size: 14px; }
-        input, select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; }
-        .btn-simular { width: 100%; background-color: #0f172a; color: white; padding: 12px; border: none; border-radius: 8px; margin-top: 20px; cursor: pointer; font-weight: bold; }
-        #resultado { margin-top: 20px; padding: 15px; background: #f1f5f9; border-radius: 8px; display: none; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Simular Empréstimo</h1>
-        
-        <label>Valor desejado (R$ 200 a R$ 8.000)</label>
-        <input type="number" id="valor" min="200" max="8000" placeholder="Ex: 1000">
+<!-- Exemplo de estrutura para um "Hotsite" profissional -->
+<div class="hero">
+    <h1>Edição Especial Equipe da Sorte</h1>
+    <img src="LINK_DA_SUA_BLUSA.jpg" alt="Blusa do Brasil">
+</div>
 
-        <label>Chave PIX para Recebimento</label>
-        <input type="text" id="pix" placeholder="Digite sua chave PIX aqui">
+<div class="features">
+    <div class="item">✅ Tecido Dry-Fit Premium</div>
+    <div class="item">✅ Entrega Rápida</div>
+    <div class="item">✅ Pagamento via Pix Seguro</div>
+</div>
 
-        <label>Número de Parcelas</label>
-        <select id="parcelas"></select>
-
-        <button class="btn-simular" onclick="simular()">Simular Agora</button>
-
-        <div id="resultado">
-            <p><strong>Valor solicitado:</strong> R$ <span id="valSol"></span></p>
-            <p><strong>Parcela:</strong> <span id="numParc"></span>x de <strong>R$ <span id="valParc"></span></strong></p>
-            <p><strong>Entrada de Garantia:</strong> R$ <span id="valEntrada"></span></p>
-            <p><strong>Chave PIX:</strong> <span id="chavePix"></span></p>
-            <br>
-            <p style="font-size: 12px; color: #64748b;">Para liberar seu empréstimo, é necessário o pagamento da entrada de garantia.</p>
-            <a id="linkPagamento" href="#" style="display:block; text-align:center; background:#22c55e; color:white; padding:10px; border-radius:8px; text-decoration:none;">Pagar Entrada via WhatsApp</a>
-        </div>
-    </div>
-
-    <script>
-        const select = document.getElementById('parcelas');
-        for (let i = 1; i <= 24; i++) {
-            let opt = document.createElement('option');
-            opt.value = i;
-            opt.innerHTML = i + 'x';
-            select.appendChild(opt);
-        }
-
-        function simular() {
-            let valor = parseFloat(document.getElementById('valor').value);
-            let nParcelas = parseInt(document.getElementById('parcelas').value);
-            let pix = document.getElementById('pix').value;
-            
-            if(valor < 200 || valor > 8000) { alert("Valor deve ser entre 200 e 8000"); return; }
-            if(pix.trim() === "") { alert("Por favor, informe sua chave PIX"); return; }
-            
-            let valorComJuros = valor * 1.30;
-            let valorParcela = valorComJuros / nParcelas;
-            let entrada = valor * 0.10; 
-            
-            document.getElementById('valSol').innerText = valor.toFixed(2);
-            document.getElementById('numParc').innerText = nParcelas;
-            document.getElementById('valParc').innerText = valorParcela.toFixed(2);
-            document.getElementById('valEntrada').innerText = entrada.toFixed(2);
-            document.getElementById('chavePix').innerText = pix;
-            document.getElementById('resultado').style.display = 'block';
-            
-            let msg = `Olá! Quero liberar um empréstimo de R$ ${valor.toFixed(2)}. Escolhi ${nParcelas}x de R$ ${valorParcela.toFixed(2)}. O valor da entrada é R$ ${entrada.toFixed(2)}. Minha chave PIX para recebimento é: ${pix}. Como faço o pagamento da entrada?`;
-            document.getElementById('linkPagamento').href = "https://wa.me/5532987194791?text=" + encodeURIComponent(msg);
-        }
-    </script>
-</body>
-</html>
+<a href="https://wa.me/5532987194791" class="btn-destaque">COMPRAR AGORA</a>
