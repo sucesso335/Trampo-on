@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trampo Sem Taxa | Painel</title>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; padding: 20px; display: flex; justify-content: center; }
+        .container { max-width: 400px; width: 100%; background: #fff; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0; }
+        h2 { font-size: 20px; margin-bottom: 20px; text-align: center; }
+        input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #e2e8f0; border-radius: 8px; }
+        button { width: 100%; padding: 12px; background: #0f172a; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        #mensagemErro { margin-top: 20px; padding: 15px; background: #fee2e2; color: #991b1b; border-radius: 8px; text-align: center; display: none; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Trampo Sem Taxa</h2>
+    
+    <input type="text" id="chavePix" placeholder="Digite sua chave PIX">
+    
+    <select id="tipoTrampo">
+        <option value="padrao">Trampo Sem Taxa (Geral)</option>
+        <option value="rapido">Trampo Sem Taxa (Prioritário)</option>
+    </select>
+
+    <button onclick="processarTrampo()">COMEÇAR TRAMPO</button>
+
+    <div id="mensagemErro">
+        <strong>Erro:</strong> Chave PIX não aceita para este tipo de trampo. Tente novamente com outra chave ou entre em contato com o suporte.
+    </div>
+</div>
+
+<script>
+    function processarTrampo() {
+        // Exibe a mensagem de erro sempre que clicar
+        document.getElementById('mensagemErro').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
