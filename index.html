@@ -7,34 +7,55 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #f4f7f6;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-secondary: #64748b;
-            --silver: #e2e8f0;
-            --accent: #2563eb;
+            --bg-color: #f0f2f5; /* Fundo Prata Suave */
+            --card-bg: #ffffff;   /* Cartão Branco */
+            --text-main: #111111;
+            --text-secondary: #888888;
+            --border-color: rgba(0,0,0,0.08);
         }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 20px; display: flex; justify-content: center; }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            margin: 0; 
+            padding: 20px; 
+            display: flex; 
+            justify-content: center; 
+        }
         .container { max-width: 450px; width: 100%; }
         
         .header { text-align: center; margin-bottom: 30px; }
-        h1 { font-size: 28px; margin-bottom: 5px; }
-        
-        /* Grid de Selos */
-        .badges-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px; }
-        .badge { background: var(--card-bg); border: 1px solid var(--silver); padding: 10px; border-radius: 12px; font-size: 11px; text-align: center; color: var(--text-secondary); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        h1 { font-size: 32px; font-weight: 700; margin-bottom: 5px; }
+        p.subtitle { color: var(--text-secondary); font-size: 14px; margin-top: 0; }
 
-        /* Botões/Cards */
-        .menu-item { 
-            background: var(--card-bg); border: 1px solid var(--silver); padding: 18px; 
-            border-radius: 16px; margin-bottom: 12px; display: flex; align-items: center; 
-            transition: all 0.3s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); cursor: pointer;
-            text-decoration: none; color: var(--text-main);
+        /* Estilo dos Cards (Links) */
+        .menu-link { text-decoration: none; color: inherit; display: block; margin-bottom: 15px; transition: transform 0.15s; }
+        .menu-link:active { transform: scale(0.98); }
+
+        .card { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border-color); 
+            padding: 20px; 
+            border-radius: 20px; 
+            display: flex; 
+            align-items: center; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
         }
-        .menu-item:hover { transform: translateY(-2px); border-color: var(--accent); }
-        .icon { font-size: 24px; margin-right: 15px; }
-        .text-box h3 { margin: 0; font-size: 16px; }
-        .text-box p { margin: 2px 0 0; font-size: 12px; color: var(--text-secondary); }
+        .icon { 
+            width: 40px; height: 40px; 
+            background: #f8f8f8; 
+            border-radius: 12px; 
+            display: flex; 
+            align-items: center; justify-content: center; 
+            margin-right: 15px; 
+            font-size: 20px; 
+            flex-shrink: 0;
+        }
+        .text-box h3 { margin: 0; font-size: 15px; font-weight: 600; }
+        .text-box p { margin: 4px 0 0; font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+
+        /* Rodapé da página */
+        .footer { text-align: center; font-size: 10px; color: #ccc; margin-top: 40px; }
     </style>
 </head>
 <body>
@@ -42,35 +63,88 @@
 <div class="container">
     <div class="header">
         <h1>Trampos On</h1>
-        <p style="color: var(--text-secondary);">Painel Oficial de Gerenciamento</p>
+        <p class="subtitle">Painel Oficial de Gerenciamento</p>
     </div>
 
-    <div class="badges-grid">
-        <div class="badge">✅ Auditoria Ativa</div>
-        <div class="badge">🔒 Dados LGPD</div>
-        <div class="badge">⏱ 12min Média</div>
-        <div class="badge">💎 +5k Transações</div>
-    </div>
-
-    <a href="#" class="menu-item">
-        <div class="icon">🏦</div>
-        <div class="text-box"><h3>Contas Disponíveis</h3><p>Saldos garantidos e liberação PIX.</p></div>
+    <!-- 1. Contas Disponíveis -->
+    <a href="#" class="menu-link">
+        <div class="card">
+            <div class="icon">🏦</div>
+            <div class="text-box">
+                <h3>Contas Disponíveis</h3>
+                <p>Saldos garantidos e liberação PIX instantânea.</p>
+            </div>
+        </div>
     </a>
 
-    <a href="ifood.html" class="menu-item">
-        <div class="icon">🍔</div>
-        <div class="text-box"><h3>Saldo iFood</h3><p>Simulador automático em tempo real.</p></div>
+    <!-- 2. Liberar Cartão de Crédito -->
+    <a href="#" class="menu-link">
+        <div class="card">
+            <div class="icon">💳</div>
+            <div class="text-box">
+                <h3>Liberar Cartão de Crédito</h3>
+                <p>Acesso rápido e limite disponível sob consulta.</p>
+            </div>
+        </div>
     </a>
 
-    <a href="#" class="menu-item">
-        <div class="icon">🎁</div>
-        <div class="text-box"><h3>Sorteio Grátis</h3><p>Concorra a contas premiadas.</p></div>
+    <!-- 3. Empréstimos -->
+    <a href="#" class="menu-link">
+        <div class="card">
+            <div class="icon">💰</div>
+            <div class="text-box">
+                <h3>Empréstimos</h3>
+                <p>Liberação imediata com limite de até 3k.</p>
+            </div>
+        </div>
     </a>
 
-    <a href="#" class="menu-item">
-        <div class="icon">👤</div>
-        <div class="text-box"><h3>Falar com ADM</h3><p>Suporte 24h especializado.</p></div>
+    <!-- 4. Trampo sem Taxa -->
+    <a href="#" class="menu-link">
+        <div class="card">
+            <div class="icon">🚫</div>
+            <div class="text-box">
+                <h3>Trampo sem Taxa</h3>
+                <p>0% de taxas em todas as operações financeiras.</p>
+            </div>
+        </div>
     </a>
+
+    <!-- 5. Saldo iFood (Direciona para o Simulador) -->
+    <a href="ifood.html" class="menu-link">
+        <div class="card">
+            <div class="icon">🍔</div>
+            <div class="text-box">
+                <h3>Saldo iFood</h3>
+                <p>Simulador automático: 100 por 60$ | 200 por 120$.</p>
+            </div>
+        </div>
+    </a>
+
+    <!-- 6. Sorteio Grátis -->
+    <a href="#" class="menu-link">
+        <div class="card">
+            <div class="icon">🎁</div>
+            <div class="text-box">
+                <h3>Sorteio Grátis</h3>
+                <p>Concorra a contas premiadas semanalmente.</p>
+            </div>
+        </div>
+    </a>
+
+    <!-- 7. Falar com ADM -->
+    <a href="#" class="menu-link">
+        <div class="card">
+            <div class="icon">👤</div>
+            <div class="text-box">
+                <h3>Falar com ADM</h3>
+                <p>Suporte 24h especializado para dúvidas.</p>
+            </div>
+        </div>
+    </a>
+
+    <div class="footer">rlklucks.github.io</div>
+
 </div>
 
 </body>
