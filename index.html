@@ -3,147 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trampos On | Painel Oficial</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Trampos do Bigode | Painel Oficial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #f0f2f5; /* Fundo Prata Suave */
-            --card-bg: #ffffff;   /* Cartão Branco */
-            --text-main: #111111;
-            --text-secondary: #888888;
-            --border-color: rgba(0,0,0,0.08);
+            --bg-dark: #121212;
+            --card-dark: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --gold: #b8860b; /* Dourado para o banner */
+            --blue-icon: #4a90e2;
+            --green-online: #00e676;
         }
-        body { 
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-            background-color: var(--bg-color); 
-            color: var(--text-main); 
-            margin: 0; 
-            padding: 20px; 
-            display: flex; 
-            justify-content: center; 
-        }
-        .container { max-width: 450px; width: 100%; }
-        
-        .header { text-align: center; margin-bottom: 30px; }
-        h1 { font-size: 32px; font-weight: 700; margin-bottom: 5px; }
-        p.subtitle { color: var(--text-secondary); font-size: 14px; margin-top: 0; }
 
-        /* Estilo dos Cards (Links) */
-        .menu-link { text-decoration: none; color: inherit; display: block; margin-bottom: 15px; transition: transform 0.15s; }
-        .menu-link:active { transform: scale(0.98); }
-
-        .card { 
-            background: var(--card-bg); 
-            border: 1px solid var(--border-color); 
-            padding: 20px; 
-            border-radius: 20px; 
-            display: flex; 
-            align-items: center; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
         }
-        .icon { 
-            width: 40px; height: 40px; 
-            background: #f8f8f8; 
-            border-radius: 12px; 
-            display: flex; 
-            align-items: center; justify-content: center; 
-            margin-right: 15px; 
-            font-size: 20px; 
-            flex-shrink: 0;
-        }
-        .text-box h3 { margin: 0; font-size: 15px; font-weight: 600; }
-        .text-box p { margin: 4px 0 0; font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
 
-        /* Rodapé da página */
-        .footer { text-align: center; font-size: 10px; color: #ccc; margin-top: 40px; }
+        .container {
+            max-width: 500px; /* Largura ajustada para a grade */
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Cabeçalho */
+        .header-area {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-top: 20px;
+        }
+
+        .main-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0 0 5px 0;
+        }
+
+        .sub-title {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .gold-banner {
+            background-color: var(--gold);
+            color: #000;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        /* Barra de Status/Badges */
+        .status-bar {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .status-badge {
+            background-color: var(--card-dark);
+            padding: 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .status-icon {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        /* Grade Principal de Opções */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 colunas por linha */
+            gap: 15px;
+        }
+
+        .option-card {
+            background-color: var(--card-dark);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid transparent;
+            aspect-ratio: 1 / 1; /* Mantém os cartões quadrados */
+        }
+
+        .option-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        .card-icon {
+            font-size: 30px;
+            color: var(--blue-icon);
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .card-desc {
+            font-size: 10px;
+            color: var(--text-secondary);
+            line-height: 1.3;
+        }
+
+        /* Botão ADM */
+        .adm-section {
+            margin-top: 30px;
+        }
+
+        .adm-card {
+            background-color: var(--card-dark);
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: inherit;
+            transition: background-color 0.2s;
+        }
+
+        .adm-card:hover {
+            background-color: #2a2a2a;
+        }
+
+        .adm-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .adm-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: #333;
+        }
+
+        .adm-name {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .adm-status {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: var(--green-online);
+            font-weight: 600;
+        }
+
+        .status-dot {
+            height: 8px;
+            width: 8px;
+            background-color: var(--green-online);
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #444;
+            margin-top: 40px;
+            padding-bottom: 20px;
+        }
+
+        /* Responsividade para telas muito pequenas */
+        @media (max-width: 400px) {
+            .options-grid {
+                grid-template-columns: repeat(2, 1fr); /* Muda para 2 colunas se a tela for muito estreita */
+            }
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="header">
-        <h1>Trampos On</h1>
-        <p class="subtitle">Painel Oficial de Gerenciamento</p>
+    <div class="header-area">
+        <h1 class="main-title">Trampos do Bigode</h1>
+        <p class="sub-title">Painel Oficial de Gerenciamento</p>
+        <div class="gold-banner">Confiança gera Conquista</div>
     </div>
 
-    <!-- 1. Contas Disponíveis -->
-    <a href="#" class="menu-link">
-        <div class="card">
-            <div class="icon">🏦</div>
-            <div class="text-box">
-                <h3>Contas Disponíveis</h3>
-                <p>Saldos garantidos e liberação PIX instantânea.</p>
-            </div>
+    <div class="status-bar">
+        <div class="status-badge">
+            <span class="status-icon">✅</span> Auditoria Ativa
         </div>
-    </a>
-
-    <!-- 2. Liberar Cartão de Crédito -->
-    <a href="#" class="menu-link">
-        <div class="card">
-            <div class="icon">💳</div>
-            <div class="text-box">
-                <h3>Liberar Cartão de Crédito</h3>
-                <p>Acesso rápido e limite disponível sob consulta.</p>
-            </div>
+        <div class="status-badge">
+            <span class="status-icon">🔒</span> Dados LGPD
         </div>
-    </a>
-
-    <!-- 3. Empréstimos -->
-    <a href="#" class="menu-link">
-        <div class="card">
-            <div class="icon">💰</div>
-            <div class="text-box">
-                <h3>Empréstimos</h3>
-                <p>Liberação imediata com limite de até 3k.</p>
-            </div>
+        <div class="status-badge">
+            <span class="status-icon">⏱️</span> Liberação Média: 12min
         </div>
-    </a>
-
-    <!-- 4. Trampo sem Taxa -->
-    <a href="#" class="menu-link">
-        <div class="card">
-            <div class="icon">🚫</div>
-            <div class="text-box">
-                <h3>Trampo sem Taxa</h3>
-                <p>0% de taxas em todas as operações financeiras.</p>
-            </div>
+        <div class="status-badge">
+            <span class="status-icon">💎</span> +5k Transações
         </div>
-    </a>
+    </div>
 
-    <!-- 5. Saldo iFood (Direciona para o Simulador) -->
-    <a href="ifood.html" class="menu-link">
-        <div class="card">
-            <div class="icon">🍔</div>
-            <div class="text-box">
-                <h3>Saldo iFood</h3>
-                <p>Simulador automático: 100 por 60$ | 200 por 120$.</p>
+    <!-- Grade de 2 linhas x 3 colunas -->
+    <div class="options-grid">
+        <!-- Cartão 1 -->
+        <a href="#" class="option-card">
+            <div class="card-icon">🏦</div>
+            <div class="card-title">Contas Disponíveis</div>
+            <div class="card-desc">Saldos garantidos e liberação PIX.</div>
+        </a>
+        <!-- Cartão 2 -->
+        <a href="#" class="option-card">
+            <div class="card-icon">💳</div>
+            <div class="card-title">Liberar Cartão</div>
+            <div class="card-desc">Acesso rápido, limite disponível.</div>
+        </a>
+        <!-- Cartão 3 -->
+        <a href="#" class="option-card">
+            <div class="card-icon">💰</div>
+            <div class="card-title">Empréstimos</div>
+            <div class="card-desc">Liberação imediata com limite de 3k.</div>
+        </a>
+        <!-- Cartão 4 -->
+        <a href="#" class="option-card">
+            <div class="card-icon">🚫</div>
+            <div class="card-title">Trampo sem Taxa</div>
+            <div class="card-desc">0% de taxas em operações.</div>
+        </a>
+        <!-- Cartão 5 -->
+        <a href="#" class="option-card">
+            <div class="card-icon">🎁</div>
+            <div class="card-title">Sorteio Grátis</div>
+            <div class="card-desc">Concorra a contas premiadas.</div>
+        </a>
+        <!-- Cartão 6 -->
+        <a href="#" class="option-card">
+            <div class="card-icon">📈</div>
+            <div class="card-title">Relatórios</div>
+            <div class="card-desc">Relatórios financeiros.</div>
+        </a>
+    </div>
+
+    <div class="adm-section">
+        <a href="#" class="adm-card">
+            <div class="adm-left">
+                <img src="" alt="ADM" class="adm-avatar"> <!-- Adicione a imagem do avatar aqui -->
+                <span class="adm-name">Falar com ADM</span>
             </div>
-        </div>
-    </a>
-
-    <!-- 6. Sorteio Grátis -->
-    <a href="#" class="menu-link">
-        <div class="card">
-            <div class="icon">🎁</div>
-            <div class="text-box">
-                <h3>Sorteio Grátis</h3>
-                <p>Concorra a contas premiadas semanalmente.</p>
+            <div class="adm-status">
+                <div class="status-dot"></div> Online
             </div>
-        </div>
-    </a>
+        </a>
+    </div>
 
-    <!-- 7. Falar com ADM -->
-    <a href="#" class="menu-link">
-        <div class="card">
-            <div class="icon">👤</div>
-            <div class="text-box">
-                <h3>Falar com ADM</h3>
-                <p>Suporte 24h especializado para dúvidas.</p>
-            </div>
-        </div>
-    </a>
-
-    <div class="footer">rlklucks.github.io</div>
+    <div class="footer">
+        rlklucks.github.io
+    </div>
 
 </div>
 
