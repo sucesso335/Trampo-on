@@ -4,117 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trampos On | Painel Oficial</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; padding: 20px; }
-        .container { max-width: 450px; margin: 0 auto; }
-
-        /* Banner de Segurança */
-        .security-banner { background: #0f172a; color: #fff; text-align: center; padding: 8px; border-radius: 50px; font-size: 11px; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        :root {
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-secondary: #64748b;
+            --silver: #e2e8f0;
+            --accent: #2563eb;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .container { max-width: 450px; width: 100%; }
         
-        h1 { font-family: 'Plus Jakarta Sans'; text-align: center; font-size: 32px; margin-bottom: 5px; }
-        .subtitle { text-align: center; color: #64748b; font-size: 14px; margin-bottom: 20px; }
-
-        /* Trust Section */
-        .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 25px; }
-        .trust-item { background: #e2e8f0; padding: 8px; border-radius: 8px; font-size: 10px; text-align: center; font-weight: 600; }
-
-        /* Cards */
-        .menu-card { display: flex; align-items: center; background: #ffffff; padding: 16px; border-radius: 16px; margin-bottom: 12px; border: 1px solid #e2e8f0; text-decoration: none; color: #1e293b; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .icon { font-size: 30px; margin-right: 15px; }
-        .info { flex: 1; }
-        .title { font-weight: 800; font-family: 'Plus Jakarta Sans'; display: block; }
-        .desc { font-size: 12px; color: #64748b; }
-
-        /* Feed Atividades */
-        .feed { margin-top: 25px; padding: 15px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; }
-        .feed h3 { font-size: 12px; margin-bottom: 8px; text-transform: uppercase; color: #64748b; }
-        .feed-item { font-size: 11px; margin-bottom: 4px; font-family: monospace; }
+        .header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 28px; margin-bottom: 5px; }
         
-        footer { text-align: center; font-size: 11px; color: #94a3b8; margin-top: 25px; }
+        /* Grid de Selos */
+        .badges-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px; }
+        .badge { background: var(--card-bg); border: 1px solid var(--silver); padding: 10px; border-radius: 12px; font-size: 11px; text-align: center; color: var(--text-secondary); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+
+        /* Botões/Cards */
+        .menu-item { 
+            background: var(--card-bg); border: 1px solid var(--silver); padding: 18px; 
+            border-radius: 16px; margin-bottom: 12px; display: flex; align-items: center; 
+            transition: all 0.3s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); cursor: pointer;
+            text-decoration: none; color: var(--text-main);
+        }
+        .menu-item:hover { transform: translateY(-2px); border-color: var(--accent); }
+        .icon { font-size: 24px; margin-right: 15px; }
+        .text-box h3 { margin: 0; font-size: 16px; }
+        .text-box p { margin: 2px 0 0; font-size: 12px; color: var(--text-secondary); }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="security-banner">● CONEXÃO CRIPTOGRAFADA E SEGURA • ATIVO</div>
+
+<div class="container">
+    <div class="header">
         <h1>Trampos On</h1>
-        <p class="subtitle">Painel Oficial de Gerenciamento</p>
-
-        <div class="trust-grid">
-            <div class="trust-item">✅ Auditoria Independente</div>
-            <div class="trust-item">🔒 Dados Protegidos (LGPD)</div>
-            <div class="trust-item">⏱️ Liberação Média: 12min</div>
-            <div class="trust-item">💎 >5k Transações</div>
-        </div>
-
-        <a href="contas.html" class="menu-card">
-            <div class="icon">🏦</div>
-            <div class="info">
-                <span class="title">Contas Disponíveis</span>
-                <span class="desc">Saldos garantidos e liberação PIX.</span>
-            </div>
-        </a>
-
-        <a href="cartao.html" class="menu-card">
-            <div class="icon">💳</div>
-            <div class="info">
-                <span class="title">Liberar Cartão de Crédito</span>
-                <span class="desc">Acesso rápido e limite disponível.</span>
-            </div>
-        </a>
-
-        <a href="emprestimo.html" class="menu-card">
-            <div class="icon">💰</div>
-            <div class="info">
-                <span class="title">Empréstimos</span>
-                <span class="desc">Liberação imediata com limite de 3k.</span>
-            </div>
-        </a>
-
-        <a href="taxa.html" class="menu-card">
-            <div class="icon">🚫</div>
-            <div class="info">
-                <span class="title">Trampo sem Taxa</span>
-                <span class="desc">0% de taxas em todas as operações.</span>
-            </div>
-        </a>
-
-        <!-- Novo Card de Saldo iFood -->
-        <a href="ifood.html" class="menu-card">
-            <div class="icon">🍔</div>
-            <div class="info">
-                <span class="title">Saldo iFood</span>
-                <span class="desc">Simulador: 100 por 60$ | 200 por 120$.</span>
-            </div>
-        </a>
-
-        <a href="sorteio.html" class="menu-card">
-            <div class="icon">🎁</div>
-            <div class="info">
-                <span class="title">Sorteio Grátis</span>
-                <span class="desc">Concorra a contas premiadas.</span>
-            </div>
-        </a>
-
-        <a href="https://wa.me/5532987194791" class="menu-card">
-            <div class="icon">👨‍💼</div>
-            <div class="info">
-                <span class="title">Falar com ADM</span>
-                <span class="desc">Suporte oficial e pós-venda.</span>
-            </div>
-        </a>
-
-        <div class="feed">
-            <h3>ULTIMAS ATIVIDADES</h3>
-            <div class="feed-item">• Fredlopes01: Conta Ouro Concluída</div>
-            <div class="feed-item">• Matheusmarques87: Pagamento Verificado</div>
-            <div class="feed-item">• Alinemarques73: Número Sorteio Gerado</div>
-        </div>
-
-        <footer>
-            &copy; 2026 Trampos On - Institucional.<br>Plataforma Certificada e Segura.
-        </footer>
+        <p style="color: var(--text-secondary);">Painel Oficial de Gerenciamento</p>
     </div>
+
+    <div class="badges-grid">
+        <div class="badge">✅ Auditoria Ativa</div>
+        <div class="badge">🔒 Dados LGPD</div>
+        <div class="badge">⏱ 12min Média</div>
+        <div class="badge">💎 +5k Transações</div>
+    </div>
+
+    <a href="#" class="menu-item">
+        <div class="icon">🏦</div>
+        <div class="text-box"><h3>Contas Disponíveis</h3><p>Saldos garantidos e liberação PIX.</p></div>
+    </a>
+
+    <a href="ifood.html" class="menu-item">
+        <div class="icon">🍔</div>
+        <div class="text-box"><h3>Saldo iFood</h3><p>Simulador automático em tempo real.</p></div>
+    </a>
+
+    <a href="#" class="menu-item">
+        <div class="icon">🎁</div>
+        <div class="text-box"><h3>Sorteio Grátis</h3><p>Concorra a contas premiadas.</p></div>
+    </a>
+
+    <a href="#" class="menu-item">
+        <div class="icon">👤</div>
+        <div class="text-box"><h3>Falar com ADM</h3><p>Suporte 24h especializado.</p></div>
+    </a>
+</div>
+
 </body>
 </html>
