@@ -1,39 +1,175 @@
--------------------------------------------------
-            GIFT CARDS COM DESCONTO
-      Economize na compra do seu saldo
--------------------------------------------------
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gift Store</title>
 
-[ Escolha o saldo ]
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
 
-◉ R$ 50
-◉ R$ 100
-◉ R$ 150
-◉ R$ 200
+body{
+background:linear-gradient(135deg,#ff4d4d,#ff7676);
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
 
------------------------------
-Saldo escolhido: R$ 100,00
+.card{
+background:#fff;
+width:100%;
+max-width:420px;
+border-radius:20px;
+padding:25px;
+box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
 
-Você paga:
-R$ 60,00
+h1{
+text-align:center;
+color:#e53935;
+margin-bottom:8px;
+}
 
-Economia:
-R$ 40,00
------------------------------
+p{
+text-align:center;
+color:#666;
+margin-bottom:25px;
+}
 
-[ COMPRAR AGORA ]
+.valor{
+font-size:40px;
+font-weight:bold;
+color:#e53935;
+text-align:center;
+margin:15px 0;
+}
 
-✔ Entrega rápida
-✔ Compra segura
-✔ Suporte via WhatsApp
+input[type=range]{
+width:100%;
+}
 
-Como funciona?
+.info{
+background:#f5f5f5;
+border-radius:15px;
+padding:15px;
+margin-top:20px;
+}
 
-1. Escolha o valor.
-2. Efetue o pagamento.
-3. Receba seu gift card.
-4. Resgate normalmente na plataforma.
+.info div{
+display:flex;
+justify-content:space-between;
+margin:10px 0;
+font-size:18px;
+}
 
-Perguntas Frequentes
-• Como recebo?
-• Quanto tempo demora?
-• Como resgatar?
+button{
+width:100%;
+padding:16px;
+border:none;
+background:#e53935;
+color:white;
+font-size:18px;
+border-radius:15px;
+cursor:pointer;
+margin-top:25px;
+font-weight:bold;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.03);
+}
+
+footer{
+text-align:center;
+margin-top:20px;
+font-size:13px;
+color:#888;
+}
+</style>
+
+</head>
+<body>
+
+<div class="card">
+
+<h1>🎁 Gift Store</h1>
+
+<p>Escolha o valor desejado.</p>
+
+<div class="valor" id="saldo">
+R$50
+</div>
+
+<input
+type="range"
+min="50"
+max="200"
+step="50"
+value="50"
+id="slider">
+
+<div class="info">
+
+<div>
+<span>Valor do Gift</span>
+<b id="gift">R$50</b>
+</div>
+
+<div>
+<span>Valor a pagar</span>
+<b id="pagar">R$30</b>
+</div>
+
+<div>
+<span>Economia</span>
+<b id="economia">R$20</b>
+</div>
+
+</div>
+
+<button>
+Comprar Agora
+</button>
+
+<footer>
+Entrega digital • Compra segura
+</footer>
+
+</div>
+
+<script>
+
+const slider=document.getElementById("slider");
+
+function atualizar(){
+
+let valor=parseInt(slider.value);
+
+let pagar=valor*0.60;
+
+document.getElementById("saldo").innerHTML="R$"+valor;
+
+document.getElementById("gift").innerHTML="R$"+valor;
+
+document.getElementById("pagar").innerHTML="R$"+pagar;
+
+document.getElementById("economia").innerHTML="R$"+(valor-pagar);
+
+}
+
+slider.oninput=atualizar;
+
+atualizar();
+
+</script>
+
+</body>
+</html>
