@@ -9,83 +9,70 @@
         body { background-color: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding: 20px; display: flex; justify-content: center; }
         .container { max-width: 450px; width: 100%; }
         
-        .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-        .logo { font-weight: bold; font-size: 20px; }
+        .hero { background: var(--card); padding: 20px; border-radius: 20px; border: 1px solid var(--red); text-align: center; margin-bottom: 20px; }
+        .timer-box { font-size: 2em; color: var(--red); font-weight: bold; margin: 10px 0; }
         
-        .hero { background: var(--card); padding: 25px; border-radius: 20px; border: 1px solid #333; margin-bottom: 20px; position: relative; text-align: center; }
-        
-        /* Temporizador */
-        .timer-box { background: #000; padding: 15px; border-radius: 12px; border: 1px solid var(--red); margin-top: 15px; color: var(--red); font-weight: bold; font-size: 1.2em; }
-
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .card { background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid #333; text-decoration: none; color: white; display: flex; align-items: center; gap: 10px; }
-        .icon-box { font-size: 24px; }
-        h3 { font-size: 13px; margin: 0; }
-        p { font-size: 10px; color: #888; margin: 0; }
+        
+        /* Notificação de compra */
+        #live-sale { background: #1a1a1a; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 15px; border: 1px solid #444; color: #00e676; text-align: center; }
         
         .adm-box { background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid #333; display: flex; align-items: center; gap: 15px; margin-top: 20px; text-decoration: none; color: white; }
         .adm-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
         
-        /* Comentários */
-        .comments { margin-top: 20px; }
-        .comment { background: var(--card); padding: 12px; border-radius: 10px; margin-bottom: 10px; font-size: 12px; border-left: 3px solid var(--red); }
+        .comment { background: var(--card); padding: 10px; border-radius: 8px; margin-top: 10px; font-size: 12px; border-left: 3px solid var(--red); transition: opacity 0.5s; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="header">
-        <div class="logo"><span style="color:var(--red);">⚡</span> Trampos do Bigode</div>
-    </div>
+    <div id="live-sale">Alguém de São Paulo acabou de solicitar um trampo!</div>
 
     <div class="hero">
-        <!-- Imagem atualizada e menor -->
-        <img src="F7475BA1-883F-4030-94F1-18ACE3840245.jpeg" alt="Banner" style="width: 150px; border-radius: 10px; margin-bottom: 15px;">
-        
-        <h1 style="margin: 0; font-size: 20px;">Confiança gera Conquista</h1>
-        <p>Trampos liberados por tempo ilimitado.</p>
-        
-        <!-- Cronômetro e texto -->
-        <div class="timer-box" id="timer" style="margin-bottom: 5px;">00:00:00</div>
-        <div style="font-size: 11px; color: #888;">Tempo de desconto</div>
+        <img src="F7475BA1-883F-4030-94F1-18ACE3840245.jpeg" style="width: 120px; border-radius: 10px;">
+        <h2 style="margin: 10px 0;">Desconto de 10% liberado!</h2>
+        <div class="timer-box" id="timer">03:00</div>
+        <p style="font-size: 12px; color: #888;">Escolha seu trampo e ganhe o desconto agora.</p>
     </div>
 
     <div class="grid">
-        <a href="contas.html" class="card"><div class="icon-box">🏛️</div><div><h3>Contas</h3><p>Saldos garantidos.</p></div></a>
-        <a href="cartao.html" class="card"><div class="icon-box">💳</div><div><h3>Cartão</h3><p>Acesso rápido.</p></div></a>
-        <a href="emprestimo.html" class="card"><div class="icon-box">💰</div><div><h3>Empréstimo</h3><p>Limite de 3k.</p></div></a>
-        <a href="taxa.html" class="card"><div class="icon-box">🛡️</div><div><h3>Sem Taxa</h3><p>0% nas operações.</p></div></a>
-        <a href="ifood.html" class="card"><div class="icon-box">🍔</div><div><h3>Saldo iFood</h3><p>Simulador 100/200.</p></div></a>
-        <a href="sorteio.html" class="card"><div class="icon-box">🎁</div><div><h3>Sorteio</h3><p>Concorra a prêmios.</p></div></a>
+        <a href="contas.html" class="card">🏛️ <h3>Contas</h3></a>
+        <a href="cartao.html" class="card">💳 <h3>Cartão</h3></a>
+        <a href="emprestimo.html" class="card">💰 <h3>Crédito</h3></a>
+        <a href="taxa.html" class="card">🛡️ <h3>Sem Taxa</h3></a>
     </div>
 
     <a href="https://wa.me/5532987194791" class="adm-box">
-        <img src="IMG_5968.png" class="adm-img" alt="ADM">
-        <div>
-            <div style="font-weight: bold;">Falar com ADM</div>
-            <div style="color: #00e676; font-size: 12px;">● Online</div>
-        </div>
+        <img src="IMG_5968.png" class="adm-img">
+        <div><strong>Falar com ADM</strong><br><span style="color: #00e676; font-size: 12px;">● Online</span></div>
     </a>
 
-    <div class="comments">
-        <div class="comment"><strong>Carlos Silva:</strong> Trampo muito rápido, já caiu na hora! Recomendo.</div>
-        <div class="comment"><strong>Ana Paula:</strong> Segunda vez que faço e deu certo, top demais.</div>
-        <div class="comment"><strong>Bigode Fan:</strong> O melhor serviço que já usei, sem erro!</div>
-    </div>
+    <div id="comment-box" class="comment">Carregando depoimentos...</div>
 </div>
 
 <script>
-    let seconds = 0;
+    // Temporizador de 3 minutos
+    let time = 180;
     setInterval(() => {
-        seconds++;
-        let hrs = Math.floor(seconds / 3600);
-        let mins = Math.floor((seconds % 3600) / 60);
-        let secs = seconds % 60;
-        document.getElementById('timer').innerText = 
-            (hrs < 10 ? "0" + hrs : hrs) + ":" + 
-            (mins < 10 ? "0" + mins : mins) + ":" + 
-            (secs < 10 ? "0" + secs : secs);
+        time--;
+        let m = Math.floor(time / 60);
+        let s = time % 60;
+        document.getElementById('timer').innerText = (m < 10 ? "0"+m : m) + ":" + (s < 10 ? "0"+s : s);
+        if(time <= 0) time = 180;
     }, 1000);
+
+    // Comentários infinitos
+    const comments = ["Trampo top, 10% de desconto muito bom!", "O melhor que tem, indico demais!", "Recebi o desconto, valeu Bigode!", "Sem erro, trampo rápido!", "Já fiz 3x e sempre cai na hora."];
+    setInterval(() => {
+        document.getElementById('comment-box').innerText = comments[Math.floor(Math.random() * comments.length)];
+    }, 4000);
+
+    // Nomes aleatórios de compra
+    const names = ["João de MG", "Maria do RJ", "Carlos de SP", "Ana de SC", "Pedro do PR"];
+    setInterval(() => {
+        document.getElementById('live-sale').innerText = names[Math.floor(Math.random() * names.length)] + " acabou de solicitar um trampo!";
+    }, 5000);
 </script>
 
 </body>
