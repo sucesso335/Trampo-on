@@ -23,8 +23,12 @@
         .adm-box { background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid #333; display: flex; align-items: center; gap: 15px; margin-top: 20px; text-decoration: none; color: white; }
         .adm-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
         
-        /* Comentários e rodapé */
-        .review-card { background: #1a1a1a; padding: 15px; border-radius: 12px; margin-top: 20px; border: 1px solid #444; font-size: 13px; }
+        /* Estilo das Avaliações */
+        .review-card { background: #1a1a1a; padding: 15px; border-radius: 12px; margin-top: 20px; border: 1px solid #444; }
+        .stars { color: #FFD700; font-size: 16px; margin-bottom: 5px; }
+        .rev-text { font-size: 14px; margin: 5px 0; }
+        .rev-time { font-size: 10px; color: #888; }
+        
         .stats-footer { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
         .stat-card { background: #1a1a1a; padding: 10px; border-radius: 10px; border: 1px solid #333; font-size: 12px; text-align: center; }
     </style>
@@ -66,7 +70,6 @@
 </div>
 
 <script>
-    // Temporizador
     let time = 180;
     setInterval(() => {
         let m = Math.floor(time / 60);
@@ -76,23 +79,28 @@
         if(time < 0) time = 180;
     }, 1000);
 
-    // Comentários Dinâmicos
-    function updateContent() {
+    const reviews = [
+        "Trampo muito rápido, nota 10!",
+        "100% seguro, fiz e recebi na hora.",
+        "O Bigode é o brabo, top demais!",
+        "Segunda vez que faço, tudo certo."
+    ];
+
+    function updateReview() {
         const now = new Date();
-        const timeStr = now.getHours() + ":" + now.getMinutes();
-        const reviews = [
-            "⭐ 5.0 - Trampo rápido, aprovado! @" + timeStr,
-            "⭐ 4.9 - 100% seguro, pode confiar! @" + timeStr,
-            "⭐ 5.0 - Bigode é o melhor, recebi em 1min! @" + timeStr
-        ];
-        document.getElementById('review-box').innerText = reviews[Math.floor(Math.random() * reviews.length)];
+        const timeStr = now.getHours() + ":" + (now.getMinutes() < 10 ? "0"+now.getMinutes() : now.getMinutes());
+        const rev = reviews[Math.floor(Math.random() * reviews.length)];
         
-        const names = ["João de MG", "Maria do RJ", "Carlos de SP"];
-        document.getElementById('live-sale').innerText = names[Math.floor(Math.random() * names.length)] + " acabou de comprar!";
+        document.getElementById('review-box').innerHTML = `
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="rev-text">${rev}</div>
+            <div class="rev-time">Postado hoje às ${timeStr}</div>
+        `;
+        document.getElementById('live-sale').innerText = "Alguém de SP acabou de comprar!";
     }
     
-    setInterval(updateContent, 3000);
-    updateContent();
+    setInterval(updateReview, 3000);
+    updateReview();
 </script>
 
 </body>
