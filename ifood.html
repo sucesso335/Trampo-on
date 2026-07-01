@@ -24,10 +24,16 @@
 
         .cta-btn { display: block; background: linear-gradient(135deg, #ff0000, #a00000); color: #fff; padding: 20px; text-align: center; border-radius: 20px; font-weight: 800; font-size: 18px; text-decoration: none; }
         
-        /* Novos Elementos */
         .garantias { display: flex; justify-content: space-around; margin: 20px 0; font-size: 10px; color: #666; }
         .estoque-box { text-align: center; font-size: 13px; color: #fff; background: #161616; padding: 15px; border-radius: 16px; border: 1px solid var(--red); }
-        .notificacao { background: #161616; border: 1px solid #333; padding: 15px; border-radius: 16px; margin-top: 25px; display: flex; align-items: center; gap: 15px; }
+        
+        /* Estilo dos Depoimentos */
+        .depoimento { background: #161616; border: 1px solid #333; padding: 15px; border-radius: 16px; margin-top: 15px; }
+        .depoimento-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .depoimento-nome { font-weight: bold; font-size: 14px; }
+        .depoimento-data { font-size: 11px; color: #666; }
+        .depoimento-texto { font-size: 13px; color: #bbb; }
+        
         footer { text-align: center; font-size: 10px; color: #444; margin-top: 30px; }
     </style>
 </head>
@@ -61,11 +67,24 @@
         ⚠ <strong>ESTOQUE LIMITADO:</strong> Restam apenas <span id="contador" style="color: var(--red);">12</span> unidades hoje.
     </div>
 
-    <div class="notificacao">
-        <div style="font-size: 24px;">👤</div>
-        <div>
-            <strong>Lucas Silva</strong> acabou de comprar<br>
-            <span style="color: var(--red); font-size: 12px;">Saldo iFood de R$ 150</span>
+    <!-- Bloco de Depoimentos -->
+    <div style="margin-top: 25px;">
+        <h3 style="text-align: center; font-size: 14px; color: #888;">Clientes Satisfeitos</h3>
+        
+        <div class="depoimento">
+            <div class="depoimento-header">
+                <span class="depoimento-nome">✅ João Silva</span>
+                <span class="depoimento-data">há 2 horas</span>
+            </div>
+            <p class="depoimento-texto">"Saldo caiu na hora, pessoal da Equipe da Sorte são muito ágeis!"</p>
+        </div>
+
+        <div class="depoimento">
+            <div class="depoimento-header">
+                <span class="depoimento-nome">✅ Ana Souza</span>
+                <span class="depoimento-data">há 5 horas</span>
+            </div>
+            <p class="depoimento-texto">"Primeira vez que compro e deu tudo certo. Recomendo muito."</p>
         </div>
     </div>
 
@@ -80,7 +99,6 @@
         document.getElementById('v-pagar').innerText = 'R$ ' + p.toFixed(2);
         document.getElementById('link-whats').href = `https://wa.me/5532987194791?text=Quero%20comprar%20o%20Saldo%20iFood%20de%20R$${s}%20pagando%20R$${p.toFixed(2)}`;
     }
-    // Contador simples de estoque
     let estoque = 12;
     document.getElementById('contador').innerText = estoque;
     update();
