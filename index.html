@@ -23,7 +23,6 @@
         .adm-box { background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid #333; display: flex; align-items: center; gap: 15px; margin-top: 20px; text-decoration: none; color: white; }
         .adm-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
         
-        /* Estilo das Avaliações */
         .review-card { background: #1a1a1a; padding: 15px; border-radius: 12px; margin-top: 20px; border: 1px solid #444; }
         .stars { color: #FFD700; font-size: 16px; margin-bottom: 5px; }
         .rev-text { font-size: 14px; margin: 5px 0; }
@@ -70,6 +69,7 @@
 </div>
 
 <script>
+    // Cronômetro de 3 minutos
     let time = 180;
     setInterval(() => {
         let m = Math.floor(time / 60);
@@ -86,21 +86,30 @@
         "Segunda vez que faço, tudo certo."
     ];
 
-    function updateReview() {
-        const now = new Date();
-        const timeStr = now.getHours() + ":" + (now.getMinutes() < 10 ? "0"+now.getMinutes() : now.getMinutes());
+    function updateContent() {
+        const agora = new Date();
+        const atraso = Math.floor(Math.random() * 30);
+        agora.setMinutes(agora.getMinutes() - atraso);
+        
+        const hora = agora.getHours();
+        const min = agora.getMinutes().toString().padStart(2, '0');
+        
+        const tempos = ["Agora", "Hoje às " + hora + ":" + min, "Ontem", "Semana passada"];
         const rev = reviews[Math.floor(Math.random() * reviews.length)];
+        const tempoAleatorio = tempos[Math.floor(Math.random() * tempos.length)];
         
         document.getElementById('review-box').innerHTML = `
             <div class="stars">⭐⭐⭐⭐⭐</div>
             <div class="rev-text">${rev}</div>
-            <div class="rev-time">Postado hoje às ${timeStr}</div>
+            <div class="rev-time">Postado: ${tempoAleatorio}</div>
         `;
-        document.getElementById('live-sale').innerText = "Alguém de SP acabou de comprar!";
+        
+        const names = ["João de MG", "Maria do RJ", "Carlos de SP"];
+        document.getElementById('live-sale').innerText = names[Math.floor(Math.random() * names.length)] + " acabou de comprar!";
     }
     
-    setInterval(updateReview, 3000);
-    updateReview();
+    setInterval(updateContent, 3000);
+    updateContent();
 </script>
 
 </body>
