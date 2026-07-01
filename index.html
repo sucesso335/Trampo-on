@@ -12,19 +12,22 @@
         .hero { background: var(--card); padding: 20px; border-radius: 20px; border: 1px solid var(--red); text-align: center; margin-bottom: 20px; }
         .timer-box { font-size: 2em; color: var(--red); font-weight: bold; margin: 10px 0; }
         
+        /* Indicadores */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; text-align: center; }
+        .stat-card { background: var(--card); padding: 10px; border-radius: 10px; border: 1px solid #333; font-size: 12px; }
+
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .card { background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid #333; text-decoration: none; color: white; display: flex; align-items: center; gap: 10px; }
         .icon-box { font-size: 24px; }
         h3 { font-size: 13px; margin: 0; }
         p { font-size: 10px; color: #888; margin: 0; }
         
-        /* Notificação de compra */
         #live-sale { background: #1a1a1a; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 15px; border: 1px solid #444; color: #00e676; text-align: center; }
         
         .adm-box { background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid #333; display: flex; align-items: center; gap: 15px; margin-top: 20px; text-decoration: none; color: white; }
         .adm-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
         
-        .comment { background: var(--card); padding: 10px; border-radius: 8px; margin-top: 10px; font-size: 12px; border-left: 3px solid var(--red); transition: opacity 0.5s; }
+        .comment { background: var(--card); padding: 10px; border-radius: 8px; margin-top: 10px; font-size: 12px; border-left: 3px solid var(--red); }
     </style>
 </head>
 <body>
@@ -37,6 +40,13 @@
         <h2 style="margin: 10px 0;">Desconto de 10% liberado!</h2>
         <div class="timer-box" id="timer">03:00</div>
         <p style="font-size: 12px; color: #888;">Escolha seu trampo e ganhe o desconto agora.</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">🛡️ 100% Seguro</div>
+        <div class="stat-card">⏱️ Liberação 1min</div>
+        <div class="stat-card">⭐ Avaliação 4,89</div>
+        <div class="stat-card">👥 Usuários 9k</div>
     </div>
 
     <div class="grid">
@@ -53,31 +63,31 @@
         <div><strong>Falar com ADM</strong><br><span style="color: #00e676; font-size: 12px;">● Online</span></div>
     </a>
 
-    <div id="comment-box" class="comment">Carregando depoimentos...</div>
+    <div id="comment-box" class="comment">Carregando comentários...</div>
 </div>
 
 <script>
-    // Temporizador de 3 minutos[span_1](start_span)[span_1](end_span)
+    // Temporizador 3min[span_1](start_span)[span_1](end_span)
     let time = 180;
     setInterval(() => {
         time--;
+        if(time < 0) time = 180;
         let m = Math.floor(time / 60);
         let s = time % 60;
-        document.getElementById('timer').innerText = (m < 10 ? "0"+m : m) + ":" + (s < 10 ? "0"+s : s);
-        if(time <= 0) time = 180;
+        document.getElementById('timer').innerText = "0" + m + ":" + (s < 10 ? "0"+s : s);
     }, 1000);
 
-    // Comentários infinitos[span_2](start_span)[span_2](end_span)
-    const comments = ["Trampo top, 10% de desconto muito bom!", "O melhor que tem, indico demais!", "Recebi o desconto, valeu Bigode!", "Sem erro, trampo rápido!", "Já fiz 3x e sempre cai na hora."];
+    // Comentários dinâmicos com data/hora[span_2](start_span)[span_2](end_span)
+    const comments = ["Trampo muito rápido! @01/07 02:30", "Recomendo, 100% seguro! @01/07 02:31", "Bigode é o melhor, funcionou! @01/07 02:32", "Já é a segunda vez, top! @01/07 02:33"];
     setInterval(() => {
         document.getElementById('comment-box').innerText = comments[Math.floor(Math.random() * comments.length)];
-    }, 4000);
+    }, 2000);
 
-    // Nomes aleatórios de compra[span_3](start_span)[span_3](end_span)
-    const names = ["João de MG", "Maria do RJ", "Carlos de SP", "Ana de SC", "Pedro do PR"];
+    // Notificações compra[span_3](start_span)[span_3](end_span)
+    const names = ["João de MG", "Maria do RJ", "Carlos de SP"];
     setInterval(() => {
-        document.getElementById('live-sale').innerText = names[Math.floor(Math.random() * names.length)] + " acabou de solicitar um trampo!";
-    }, 5000);
+        document.getElementById('live-sale').innerText = names[Math.floor(Math.random() * names.length)] + " acabou de comprar!";
+    }, 3000);
 </script>
 
 </body>
