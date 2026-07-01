@@ -12,9 +12,9 @@
         .hero { background: var(--card); padding: 20px; border-radius: 20px; border: 1px solid var(--red); text-align: center; margin-bottom: 20px; }
         .timer-box { font-size: 2em; color: var(--red); font-weight: bold; margin: 10px 0; }
         
-        /* Indicadores */
         .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; text-align: center; }
         .stat-card { background: var(--card); padding: 10px; border-radius: 10px; border: 1px solid #333; font-size: 12px; }
+        .secure-badge { border: 2px solid #00e676; color: #00e676; font-weight: bold; }
 
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .card { background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid #333; text-decoration: none; color: white; display: flex; align-items: center; gap: 10px; }
@@ -27,7 +27,11 @@
         .adm-box { background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid #333; display: flex; align-items: center; gap: 15px; margin-top: 20px; text-decoration: none; color: white; }
         .adm-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
         
-        .comment { background: var(--card); padding: 10px; border-radius: 8px; margin-top: 10px; font-size: 12px; border-left: 3px solid var(--red); }
+        /* Seção de Comentários estilo Avaliação */
+        .reviews-section { margin-top: 30px; border-top: 1px solid #333; padding-top: 20px; }
+        .review-card { background: #1a1a1a; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #444; }
+        .review-header { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 5px; color: var(--red); }
+        .review-text { font-size: 14px; line-height: 1.4; color: #ddd; }
     </style>
 </head>
 <body>
@@ -43,7 +47,7 @@
     </div>
 
     <div class="stats-grid">
-        <div class="stat-card">🛡️ 100% Seguro</div>
+        <div class="stat-card secure-badge">🛡️ 100% SEGURO</div>
         <div class="stat-card">⏱️ Liberação 1min</div>
         <div class="stat-card">⭐ Avaliação 4,89</div>
         <div class="stat-card">👥 Usuários 9k</div>
@@ -63,11 +67,15 @@
         <div><strong>Falar com ADM</strong><br><span style="color: #00e676; font-size: 12px;">● Online</span></div>
     </a>
 
-    <div id="comment-box" class="comment">Carregando comentários...</div>
+    <!-- Avaliações -->
+    <div class="reviews-section">
+        <h3 style="margin-bottom: 15px;">Avaliações Recentes</h3>
+        <div id="review-box">Carregando depoimentos...</div>
+    </div>
 </div>
 
 <script>
-    // Temporizador 3min[span_1](start_span)[span_1](end_span)
+    // Temporizador 3min
     let time = 180;
     setInterval(() => {
         time--;
@@ -77,17 +85,30 @@
         document.getElementById('timer').innerText = "0" + m + ":" + (s < 10 ? "0"+s : s);
     }, 1000);
 
-    // Comentários dinâmicos com data/hora[span_2](start_span)[span_2](end_span)
-    const comments = ["Trampo muito rápido! @01/07 02:30", "Recomendo, 100% seguro! @01/07 02:31", "Bigode é o melhor, funcionou! @01/07 02:32", "Já é a segunda vez, top! @01/07 02:33"];
+    // Comentários infinitos estilo Avaliação
+    const reviews = [
+        {name: "Ricardo S.", text: "Serviço incrível, o melhor que já vi! Tudo liberado em 1 minuto."},
+        {name: "Beatriz M.", text: "Atendimento nota 10, muito profissional. Recomendo a todos!"},
+        {name: "Lucas P.", text: "Realmente 100% seguro, fiz o trampo e recebi na hora. Parabéns!"},
+        {name: "Fernanda J.", text: "O Bigode é fera, não tem erro. O desconto ajudou muito!"}
+    ];
+    
     setInterval(() => {
-        document.getElementById('comment-box').innerText = comments[Math.floor(Math.random() * comments.length)];
-    }, 2000);
+        const rev = reviews[Math.floor(Math.random() * reviews.length)];
+        const date = new Date().toLocaleDateString('pt-BR');
+        document.getElementById('review-box').innerHTML = `
+            <div class="review-card">
+                <div class="review-header"><span>${rev.name}</span> <span>⭐⭐⭐⭐⭐</span></div>
+                <div class="review-text">"${rev.text}"</div>
+                <div style="font-size: 10px; color: #666; margin-top: 8px;">Postado em ${date}</div>
+            </div>`;
+    }, 3000);
 
-    // Notificações compra[span_3](start_span)[span_3](end_span)
+    // Notificações compra
     const names = ["João de MG", "Maria do RJ", "Carlos de SP"];
     setInterval(() => {
         document.getElementById('live-sale').innerText = names[Math.floor(Math.random() * names.length)] + " acabou de comprar!";
-    }, 3000);
+    }, 4000);
 </script>
 
 </body>
