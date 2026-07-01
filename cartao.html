@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulação de Crédito | Trampos do Bigode</title>
+    <title>Simulador de Crédito | Trampos do Bigode</title>
     <style>
         :root { --bg: #0a0a0a; --card: #141414; --red: #ff2e2e; --text: #ffffff; --green: #00e676; }
         body { font-family: sans-serif; background-color: var(--bg); color: var(--text); padding: 20px; display: flex; justify-content: center; }
         .container { max-width: 400px; width: 100%; background: var(--card); border: 1px solid #333; padding: 25px; border-radius: 20px; text-align: center; }
         
-        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #444; background: #000; color: white; }
-        button { width: 100%; padding: 15px; background: var(--red); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #444; background: #000; color: white; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; background: var(--red); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #d32f2f; }
         
         #resultado { display: none; margin-top: 20px; }
         .btn-pagar { display: block; background: var(--green); color: black; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 15px; }
@@ -19,7 +20,7 @@
 <body>
 
 <div class="container" id="tela-inicial">
-    <h1>Simulador de Cartão</h1>
+    <h1>Simulador de Crédito</h1>
     <p>Preencha abaixo para verificar seu limite disponível:</p>
     <input type="text" id="nome" placeholder="Seu Nome">
     <input type="text" id="cpf" placeholder="Seu CPF">
@@ -29,11 +30,11 @@
 <div class="container" id="resultado">
     <h2>Análise Concluída!</h2>
     <p>Olá <span id="nome-user"></span>, seu limite liberado é de:</p>
-    <div style="font-size: 30px; font-weight: bold; color: var(--green);">R$ 3.000,00</div>
-    <p>Para liberar, você deve pagar a taxa de ativação de 20% do valor:</p>
-    <div style="font-size: 24px; color: var(--red); font-weight: bold;">R$ 600,00</div>
+    <div id="valor-limite" style="font-size: 28px; font-weight: bold; color: var(--green); margin: 10px 0;"></div>
+    <p>Para liberar, pague a taxa de ativação de 20%:</p>
+    <div id="valor-taxa" style="font-size: 24px; color: var(--red); font-weight: bold; margin-bottom: 15px;"></div>
     <a id="link-pagamento" href="#" class="btn-pagar">PAGAR TAXA DE LIBERAÇÃO</a>
-    <a href="cartao.html" style="color: #666; display: block; margin-top: 15px;">Fazer outra simulação</a>
+    <a href="cartao.html" style="color: #666; display: block; margin-top: 20px; font-size: 12px;">Nova Simulação</a>
 </div>
 
 <script>
@@ -41,11 +42,18 @@
         const nome = document.getElementById('nome').value;
         if(nome === "") { alert("Preencha seu nome!"); return; }
         
+        // Gera valor aleatório entre 850 e 2590 com centavos
+        const limite = (Math.random() * (2590 - 850) + 850).toFixed(2);
+        const taxa = (limite * 0.20).toFixed(2);
+        
         document.getElementById('nome-user').innerText = nome;
+        document.getElementById('valor-limite').innerText = "R$ " + limite.replace('.', ',');
+        document.getElementById('valor-taxa').innerText = "R$ " + taxa.replace('.', ',');
+        
         document.getElementById('tela-inicial').style.display = "none";
         document.getElementById('resultado').style.display = "block";
         
-        const link = "https://wa.me/5532987194791?text=Olá, meu nome é " + nome + ". Simulei o cartão e deu R$ 3.000,00. Quero pagar os 20% (R$ 600,00) para liberar.";
+        const link = "https://wa.me/5532987194791?text=Olá Bigode! Meu nome é " + nome + ". Simulei o cartão e o limite foi R$ " + limite.replace('.', ',') + ". Quero pagar os 20% (R$ " + taxa.replace('.', ',') + ") para liberar.";
         document.getElementById('link-pagamento').href = link;
     }
 </script>
