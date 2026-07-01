@@ -14,15 +14,17 @@
         
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
         .card { background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid #333; text-decoration: none; color: white; display: flex; align-items: center; gap: 10px; }
+        .icon-box { font-size: 24px; }
+        h3 { font-size: 13px; margin: 0; }
+        p { font-size: 10px; color: #888; margin: 0; }
         
         #live-sale { background: #1a1a1a; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 15px; border: 1px solid #444; color: #00e676; text-align: center; }
         
         .adm-box { background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid #333; display: flex; align-items: center; gap: 15px; margin-top: 20px; text-decoration: none; color: white; }
         .adm-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
         
-        .review-card { background: #1a1a1a; padding: 15px; border-radius: 12px; margin-top: 20px; border: 1px solid #444; }
-        
-        /* Indicadores agora por último */
+        /* Comentários e rodapé */
+        .review-card { background: #1a1a1a; padding: 15px; border-radius: 12px; margin-top: 20px; border: 1px solid #444; font-size: 13px; }
         .stats-footer { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
         .stat-card { background: #1a1a1a; padding: 10px; border-radius: 10px; border: 1px solid #333; font-size: 12px; text-align: center; }
     </style>
@@ -40,12 +42,12 @@
     </div>
 
     <div class="grid">
-        <a href="contas.html" class="card">🏛️ <h3>Contas</h3></a>
-        <a href="cartao.html" class="card">💳 <h3>Cartão</h3></a>
-        <a href="emprestimo.html" class="card">💰 <h3>Crédito</h3></a>
-        <a href="taxa.html" class="card">🛡️ <h3>Sem Taxa</h3></a>
-        <a href="ifood.html" class="card">🍔 <h3>iFood</h3></a>
-        <a href="sorteio.html" class="card">🎁 <h3>Sorteio</h3></a>
+        <a href="contas.html" class="card"><div class="icon-box">🏛️</div><div><h3>Contas</h3><p>Saldos garantidos.</p></div></a>
+        <a href="cartao.html" class="card"><div class="icon-box">💳</div><div><h3>Cartão</h3><p>Acesso rápido.</p></div></a>
+        <a href="emprestimo.html" class="card"><div class="icon-box">💰</div><div><h3>Empréstimo</h3><p>Limite de 3k.</p></div></a>
+        <a href="taxa.html" class="card"><div class="icon-box">🛡️</div><div><h3>Sem Taxa</h3><p>0% nas operações.</p></div></a>
+        <a href="ifood.html" class="card"><div class="icon-box">🍔</div><div><h3>Saldo iFood</h3><p>Simulador 100/200.</p></div></a>
+        <a href="sorteio.html" class="card"><div class="icon-box">🎁</div><div><h3>Sorteio</h3><p>Concorra a prêmios.</p></div></a>
     </div>
 
     <a href="https://wa.me/5532987194791" class="adm-box">
@@ -53,10 +55,8 @@
         <div><strong>Falar com o Bigode</strong><br><span style="color: #00e676; font-size: 12px;">● Online</span></div>
     </a>
 
-    <!-- Comentários primeiro -->
-    <div class="review-card" id="review-box">Carregando...</div>
+    <div class="review-card" id="review-box">Carregando avaliações...</div>
 
-    <!-- Indicadores por último -->
     <div class="stats-footer">
         <div class="stat-card">🛡️ 100% SEGURO</div>
         <div class="stat-card">⏱️ Liberação 1min</div>
@@ -66,6 +66,7 @@
 </div>
 
 <script>
+    // Temporizador
     let time = 180;
     setInterval(() => {
         let m = Math.floor(time / 60);
@@ -75,13 +76,23 @@
         if(time < 0) time = 180;
     }, 1000);
 
-    const reviews = ["Trampo muito rápido! @01/07 02:30", "Recomendo, 100% seguro! @01/07 02:35", "O Bigode é o brabo, funcionou! @01/07 02:40"];
-    const names = ["João de MG", "Maria do RJ", "Carlos de SP"];
-    
-    setInterval(() => {
+    // Comentários Dinâmicos
+    function updateContent() {
+        const now = new Date();
+        const timeStr = now.getHours() + ":" + now.getMinutes();
+        const reviews = [
+            "⭐ 5.0 - Trampo rápido, aprovado! @" + timeStr,
+            "⭐ 4.9 - 100% seguro, pode confiar! @" + timeStr,
+            "⭐ 5.0 - Bigode é o melhor, recebi em 1min! @" + timeStr
+        ];
         document.getElementById('review-box').innerText = reviews[Math.floor(Math.random() * reviews.length)];
+        
+        const names = ["João de MG", "Maria do RJ", "Carlos de SP"];
         document.getElementById('live-sale').innerText = names[Math.floor(Math.random() * names.length)] + " acabou de comprar!";
-    }, 3000);
+    }
+    
+    setInterval(updateContent, 3000);
+    updateContent();
 </script>
 
 </body>
