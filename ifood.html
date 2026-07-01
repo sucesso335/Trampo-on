@@ -18,22 +18,21 @@
         input[type=range] { width: 100%; accent-color: var(--red); margin: 25px 0; }
         .val-display { text-align: center; font-size: 45px; font-weight: 800; color: var(--red); }
         
+        .promo-banner { background: var(--red); padding: 15px; border-radius: 16px; text-align: center; margin-bottom: 20px; font-weight: 800; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+
         .resumo-box { background: #161616; border-radius: 16px; padding: 20px; margin: 20px 0; border: 1px solid #333; }
         .row { display: flex; justify-content: space-between; margin-bottom: 10px; color: #aaa; }
         .row.total { color: #fff; font-size: 18px; font-weight: 700; border-top: 1px solid #333; padding-top: 15px; }
 
         .cta-btn { display: block; background: linear-gradient(135deg, #ff0000, #a00000); color: #fff; padding: 20px; text-align: center; border-radius: 20px; font-weight: 800; font-size: 18px; text-decoration: none; }
         
-        .garantias { display: flex; justify-content: space-around; margin: 20px 0; font-size: 10px; color: #666; }
-        .estoque-box { text-align: center; font-size: 13px; color: #fff; background: #161616; padding: 15px; border-radius: 16px; border: 1px solid var(--red); }
-        
-        /* Estilo dos Depoimentos */
+        .estoque-box { text-align: center; font-size: 13px; color: #fff; background: #161616; padding: 15px; border-radius: 16px; border: 1px solid var(--red); margin: 20px 0; }
         .depoimento { background: #161616; border: 1px solid #333; padding: 15px; border-radius: 16px; margin-top: 15px; }
         .depoimento-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
         .depoimento-nome { font-weight: bold; font-size: 14px; }
         .depoimento-data { font-size: 11px; color: #666; }
         .depoimento-texto { font-size: 13px; color: #bbb; }
-        
         footer { text-align: center; font-size: 10px; color: #444; margin-top: 30px; }
     </style>
 </head>
@@ -45,29 +44,28 @@
         <h1>SALDO IFOOD</h1>
     </div>
 
+    <!-- Promoção de Hoje -->
+    <div class="promo-banner">
+        🚀 PROMOÇÃO DE HOJE: Ganhe bônus extra nas compras acima de R$ 150!
+    </div>
+
     <div class="main-card">
         <input type="range" id="range" min="50" max="200" step="50" value="100" oninput="update()">
         <div class="val-display" id="v-saldo">R$ 100</div>
 
         <div class="resumo-box">
-            <div class="row"><span>Garantia</span><span>100% Seguro</span></div>
+            <div class="row"><span>Status</span><span style="color:#00ff00;">Verificado</span></div>
             <div class="row total"><span>Valor a Pagar</span><span id="v-pagar">R$ 60</span></div>
         </div>
 
         <a href="#" id="link-whats" class="cta-btn">COMPRAR AGORA</a>
-        
-        <div class="garantias">
-            <span>🛡️ Criptografado</span>
-            <span>✅ Verificado</span>
-            <span>⚡ Entrega Rápida</span>
-        </div>
     </div>
 
     <div class="estoque-box">
         ⚠ <strong>ESTOQUE LIMITADO:</strong> Restam apenas <span id="contador" style="color: var(--red);">12</span> unidades hoje.
     </div>
 
-    <!-- Bloco de Depoimentos -->
+    <!-- Prova Social Ampliada -->
     <div style="margin-top: 25px;">
         <h3 style="text-align: center; font-size: 14px; color: #888;">Clientes Satisfeitos</h3>
         
@@ -76,7 +74,7 @@
                 <span class="depoimento-nome">✅ João Silva</span>
                 <span class="depoimento-data">há 2 horas</span>
             </div>
-            <p class="depoimento-texto">"Saldo caiu na hora, pessoal da Equipe da Sorte são muito ágeis!"</p>
+            <p class="depoimento-texto">"Saldo caiu na hora, muito ágeis!"</p>
         </div>
 
         <div class="depoimento">
@@ -84,7 +82,15 @@
                 <span class="depoimento-nome">✅ Ana Souza</span>
                 <span class="depoimento-data">há 5 horas</span>
             </div>
-            <p class="depoimento-texto">"Primeira vez que compro e deu tudo certo. Recomendo muito."</p>
+            <p class="depoimento-texto">"Tudo certo, recomendo a Equipe da Sorte."</p>
+        </div>
+
+        <div class="depoimento">
+            <div class="depoimento-header">
+                <span class="depoimento-nome">✅ Pedro Henrique</span>
+                <span class="depoimento-data">há 7 horas</span>
+            </div>
+            <p class="depoimento-texto">"Comprei o de 200, entrega super rápida. Confiança total!"</p>
         </div>
     </div>
 
