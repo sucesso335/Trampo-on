@@ -3,67 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saldo Lanche</title>
+    <title>Simulador de Saldo</title>
     <style>
-        body { background-color: #050505; color: white; font-family: sans-serif; padding: 20px; display: flex; justify-content: center; }
+        body { background-color: #050505; color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding: 20px; }
         .container { max-width: 400px; width: 100%; }
+        .card { background: #161616; border: 1px solid #333; border-radius: 20px; padding: 25px; margin-bottom: 20px; }
         
-        .card { background: #161616; border: 1px solid #333; border-radius: 20px; padding: 20px; margin-bottom: 20px; }
+        /* Simulador Visual */
+        input[type=range] { width: 100%; accent-color: #ff0000; margin: 20px 0; }
+        .price-display { text-align: center; font-size: 40px; font-weight: bold; color: #ff0000; margin: 10px 0; }
+        .resumo { border-top: 1px solid #333; padding-top: 15px; margin-top: 15px; }
         
-        /* Simulador */
-        .price-box { border: 2px solid #ff0000; padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 20px; }
-        .valor-total { color: #ff0000; font-size: 32px; font-weight: bold; }
+        .btn-comprar { display: block; background: #ff0000; color: white; padding: 18px; text-align: center; border-radius: 15px; text-decoration: none; font-weight: bold; font-size: 18px; }
         
-        /* Botão */
-        .btn-comprar { 
-            display: block; background: #ff0000; color: white; padding: 20px; 
-            text-align: center; border-radius: 15px; text-decoration: none; font-weight: bold; 
-            font-size: 18px; box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
-        }
-        
-        /* Estoque */
-        .estoque-box { margin-top: 20px; color: #ff0000; font-weight: bold; }
-        .barra { background: #333; height: 8px; border-radius: 4px; margin-top: 5px; }
-        .progresso { background: #ff0000; width: 40%; height: 100%; border-radius: 4px; }
-        
-        /* Notificação */
-        .notificacao { 
-            background: #161616; border: 1px solid #333; padding: 10px; 
-            border-radius: 15px; margin-top: 20px; font-size: 12px; display: flex; align-items: center; 
-        }
+        .estoque-box { margin-top: 20px; text-align: center; font-size: 12px; color: #888; }
+        .barra { background: #333; height: 6px; border-radius: 3px; margin-top: 8px; }
+        .progresso { background: #ff0000; width: 37%; height: 100%; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="card">
-        <h3>1. ESCOLHA O VALOR</h3>
-        <div class="price-box">
-            <div style="font-size: 14px;">Saldo Selecionado:</div>
-            <div class="valor-total">R$ 150,00</div>
-        </div>
+        <h2 style="text-align: center;">Simulador de Saldo</h2>
+        <input type="range" id="range" min="50" max="200" step="50" value="100" oninput="atualizar()">
         
-        <h3>2. RESUMO DO PEDIDO</h3>
-        <p>Valor a pagar: <span style="color: #ff0000; font-weight: bold;">R$ 90,00</span></p>
+        <div class="price-display" id="valor-saldo">R$ 100</div>
+        
+        <div class="resumo">
+            <p>Valor a pagar: <strong id="valor-pagar" style="color: #ff0000; font-size: 20px;">R$ 60</strong></p>
+        </div>
     </div>
 
-    <a href="https://wa.me/5532987194791?text=Quero%20comprar%20o%20saldo%20de%20150" class="btn-comprar">
-        COMPRAR AGORA
-    </a>
+    <a href="#" id="link-whats" class="btn-comprar">COMPRAR AGORA</a>
 
     <div class="estoque-box">
-        ⚠ ESTOQUE ESGOTANDO!
+        ⚠ ESTOQUE ESGOTANDO! Restam poucas unidades hoje.
         <div class="barra"><div class="progresso"></div></div>
     </div>
-
-    <div class="notificacao">
-        <span style="margin-right: 10px; font-size: 20px;">👤</span>
-        <div>
-            <strong>Lucas Silva</strong> acabou de comprar<br>
-            <span style="color: #ff0000;">Saldo Lanche de R$ 150</span>
-        </div>
-    </div>
 </div>
+
+<script>
+    function atualizar() {
+        let saldo = document.getElementById('range').value;
+        // Lógica: Se 100 paga 60, 50 paga 30, 200 paga 120 (proporção de 60%)
+        let pagar = saldo * 0.6; 
+        
+        document.getElementById('valor-saldo').innerText = 'R$ ' + saldo;
+        document.getElementById('valor-pagar').innerText = 'R$ ' + pagar;
+        
+        let link = "https://wa.me/5532987194791?text=Quero%20comprar%20o%20saldo%20de%20R$%20" + saldo + "%20pagando%20R$%20" + pagar;
+        document.getElementById('link-whats').href = link;
+    }
+    // Iniciar com valores padrão
+    atualizar();
+</script>
 
 </body>
 </html>
