@@ -3,260 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grande Sorteio - Trampos On</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
-
+    <title>Sorteios | Trampos do Bigode</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        :root { --bg: #0a0a0a; --card: #141414; --red: #ff2e2e; --text: #ffffff; --green: #00e676; --border: #333; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f4f6f9;
-            color: #333333;
-            line-height: 1.6;
-            padding: 20px;
-        }
+        body { background-color: var(--bg); color: var(--text); padding: 20px; display: flex; justify-content: center; min-height: 100vh; }
+        .container { max-width: 450px; width: 100%; background: var(--card); border: 1px solid var(--border); padding: 25px; border-radius: 20px; }
 
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
+        header { text-align: center; margin-bottom: 25px; }
+        h1 { color: var(--red); font-size: 24px; margin-bottom: 5px; }
+        
+        label { display: block; margin-top: 15px; font-size: 13px; color: #ccc; }
+        input, select { width: 100%; padding: 12px; margin-top: 5px; border-radius: 8px; border: 1px solid var(--border); background: #000; color: white; }
+        
+        .total-box { background: #000; border: 1px solid var(--border); padding: 15px; border-radius: 10px; margin-top: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .total-valor { font-size: 20px; color: var(--green); font-weight: bold; }
 
-        header {
-            text-align: center;
-            margin-bottom: 25px;
-            border-bottom: 2px solid #f0f2f5;
-            padding-bottom: 15px;
-        }
-
-        h1 {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 26px;
-            color: #1e293b;
-            margin-bottom: 6px;
-        }
-
-        .subtitle {
-            font-size: 14px;
-            color: #64748b;
-            font-weight: 500;
-        }
-
-        /* Card do Prêmio */
-        .premio-card {
-            background: linear-gradient(135deg, #ff9f43, #ff5252);
-            color: #ffffff;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(255, 82, 82, 0.25);
-        }
-
-        .premio-titulo {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-            margin-bottom: 5px;
-            opacity: 0.9;
-        }
-
-        .premio-valor {
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 5px;
-        }
-
-        .premio-custo {
-            font-size: 14px;
-            background: rgba(255, 255, 255, 0.2);
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-
-        label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            color: #334155;
-            margin-bottom: 8px;
-            margin-top: 15px;
-        }
-
-        .campo-input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            font-size: 15px;
-            font-family: 'Inter', sans-serif;
-            outline: none;
-            background-color: #ffffff;
-            transition: border-color 0.2s;
-            margin-bottom: 10px;
-        }
-
-        .campo-input:focus {
-            border-color: #ff5252;
-        }
-
-        /* Totalizador */
-        .total-box {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .total-texto {
-            font-size: 14px;
-            color: #475569;
-            font-weight: 600;
-        }
-
-        .total-valor {
-            font-size: 18px;
-            color: #ff5252;
-            font-weight: 700;
-        }
-
-        .btn-participar {
-            display: block;
-            width: 100%;
-            background: #ff5252;
-            color: #ffffff;
-            text-align: center;
-            padding: 14px;
-            border: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 25px;
-            transition: background 0.2s;
-            box-shadow: 0 4px 6px rgba(255, 82, 82, 0.2);
-            font-family: 'Inter', sans-serif;
-            text-decoration: none;
-        }
-
-        .btn-participar:active {
-            background: #e04040;
-        }
-
-        .btn-voltar {
-            display: block;
-            text-align: center;
-            margin-top: 15px;
-            font-size: 14px;
-            color: #64748b;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .btn-voltar:hover {
-            color: #334155;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 12px;
-            color: #94a3b8;
-        }
+        .btn-participar { display: block; width: 100%; background: var(--red); color: white; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 25px; text-decoration: none; text-align: center; box-shadow: 0 4px 15px rgba(255, 46, 46, 0.3); }
+        .btn-voltar { display: block; text-align: center; margin-top: 20px; color: #666; font-size: 12px; text-decoration: none; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <header>
-            <h1>Sorteio Oficial</h1>
-            <p class="subtitle">Garanta sua vaga e concorra</p>
+            <h1>Nossos Sorteios</h1>
         </header>
 
-        <main>
-            <div class="premio-card">
-                <div class="premio-titulo">🎁 Sorteio Especial Brinde</div>
-                <div class="premio-valor">R$ 1.000,00</div>
-                <div class="premio-custo">Apenas R$ 5,00 por número</div>
+        <form id="formSorteio" onsubmit="enviarSorteio(event)">
+            <label>Selecione o Sorteio:</label>
+            <select id="tipoSorteio" onchange="calcularTotal()">
+                <option value="1000">Sorteio R$ 1.000,00 (R$ 5/número)</option>
+                <option value="ifood">Saldo iFood (R$ 1/número)</option>
+            </select>
+
+            <label>Seu Nome Completo:</label>
+            <input type="text" id="nome" class="campo-input" placeholder="Digite seu nome..." required>
+
+            <label>Seu WhatsApp:</label>
+            <input type="text" id="contato" class="campo-input" placeholder="(00) 00000-0000" required>
+
+            <label>Quantidade de números:</label>
+            <input type="number" id="quantidade" class="campo-input" min="1" value="1" oninput="calcularTotal()" required>
+
+            <div class="total-box">
+                <span>Valor Total:</span>
+                <span class="total-valor" id="totalValor">R$ 5,00</span>
             </div>
 
-            <form id="formSorteio" onsubmit="enviarSorteio(event)">
-                
-                <label for="nome">Seu Nome Completo:</label>
-                <input type="text" id="nome" class="campo-input" placeholder="Digite seu nome aqui..." required>
+            <button type="submit" class="btn-participar">RESERVAR NÚMEROS</button>
+        </form>
 
-                <label for="contato">Seu WhatsApp de Contato:</label>
-                <input type="text" id="contato" class="campo-input" placeholder="Ex: (32) 99999-9999" required>
-
-                <label for="quantidade">Quantos números deseja comprar?</label>
-                <input type="number" id="quantidade" class="campo-input" min="1" value="1" oninput="calcularTotal()" required>
-
-                <div class="total-box">
-                    <span class="total-texto">Valor Total do Pedido:</span>
-                    <span class="total-valor" id="totalValor">R$ 5,00</span>
-                </div>
-
-                <button type="submit" class="btn-participar">🍀 Reservar Números no WhatsApp</button>
-            </form>
-
-            <a href="index.html" class="btn-voltar">← Voltar para o Painel</a>
-        </main>
-
-        <footer>
-            &copy; 2026 Trampos On. Todos os direitos reservados.
-        </footer>
+        <a href="index.html" class="btn-voltar">← Voltar para o Painel</a>
     </div>
 
     <script>
-        // Função para atualizar o valor total em tempo real
         function calcularTotal() {
-            var qtd = document.getElementById('quantidade').value;
-            var total = qtd * 5;
+            let tipo = document.getElementById('tipoSorteio').value;
+            let qtd = document.getElementById('quantidade').value;
+            let preco = (tipo === 'ifood') ? 1 : 5;
+            let total = qtd * preco;
             document.getElementById('totalValor').innerText = "R$ " + total.toFixed(2).replace('.', ',');
         }
 
-        // Função para direcionar os dados direto para o seu WhatsApp
         function enviarSorteio(event) {
-            event.preventDefault(); // Impede o recarregamento da página
-            
-            var nome = document.getElementById('nome').value;
-            var contato = document.getElementById('contato').value;
-            var qtd = document.getElementById('quantidade').value;
-            var total = qtd * 5;
+            event.preventDefault();
+            let tipo = document.getElementById('tipoSorteio').options[document.getElementById('tipoSorteio').selectedIndex].text;
+            let nome = document.getElementById('nome').value;
+            let contato = document.getElementById('contato').value;
+            let qtd = document.getElementById('quantidade').value;
+            let valorTotal = document.getElementById('totalValor').innerText;
 
-            // Cria o texto formatado que vai chegar no seu WhatsApp
-            var mensagem = "Olá ADM! Quero participar do Sorteio de 1K.%0A%0A" +
-                           "*Nome:* " + encodeURIComponent(nome) + "%0A" +
-                           "*Contato:* " + encodeURIComponent(contato) + "%0A" +
-                           "*Quantidade de números:* " + qtd + "%0A" +
-                           "*Valor total:* R$ " + total.toFixed(2).replace('.', ',');
+            let mensagem = `Olá Bigode! Quero participar do sorteio: ${tipo}.
+            *Nome:* ${nome}
+            *Contato:* ${contato}
+            *Quantidade:* ${qtd} números
+            *Valor total:* ${valorTotal}`;
 
-            // Seu link de redirecionamento do WhatsApp
-            var urlWhatsApp = "https://wa.me/5532987194791?text=" + mensagem;
-
-            // Abre a janela do WhatsApp
-            window.open(urlWhatsApp, '_blank');
+            window.open("https://wa.me/5532987194791?text=" + encodeURIComponent(mensagem), '_blank');
         }
     </script>
-
 </body>
 </html>
