@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trampos do Bigode</title>
     <style>
-        :root { --bg: #0a0a0a; --card: #141414; --red: #ff2e2e; --text: #ffffff; }
+        :root { --bg: #0a0a0a; --card: #141414; --red: #ff2e2e; --text: #ffffff; --green: #00e676; }
         body { background-color: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding: 20px; display: flex; justify-content: center; }
         .container { max-width: 450px; width: 100%; }
         
@@ -18,10 +18,12 @@
         h3 { font-size: 13px; margin: 0; }
         p { font-size: 10px; color: #888; margin: 0; }
         
-        #live-sale { background: #1a1a1a; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 15px; border: 1px solid #444; color: #00e676; text-align: center; }
+        #live-sale { background: #1a1a1a; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 15px; border: 1px solid #444; color: var(--green); text-align: center; }
         
         .adm-box { background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid #333; display: flex; align-items: center; gap: 15px; margin-top: 20px; text-decoration: none; color: white; }
         .adm-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+        
+        .status-box { text-align: center; margin-top: 5px; font-size: 12px; }
         
         .review-card { background: #1a1a1a; padding: 15px; border-radius: 12px; margin-top: 20px; border: 1px solid #444; }
         .stars { color: #FFD700; font-size: 16px; margin-bottom: 5px; }
@@ -55,7 +57,10 @@
 
     <a href="https://wa.me/5532987194791" class="adm-box">
         <img src="IMG_5968.png" class="adm-img">
-        <div><strong>Falar com o Bigode</strong><br><span style="color: #00e676; font-size: 12px;">● Online</span></div>
+        <div>
+            <strong>Falar com o Bigode</strong>
+            <div class="status-box">Status: <span id="status-atendimento">Verificando...</span></div>
+        </div>
     </a>
 
     <div class="review-card" id="review-box">Carregando avaliações...</div>
@@ -69,7 +74,7 @@
 </div>
 
 <script>
-    // Cronômetro de 3 minutos
+    // Cronômetro
     let time = 180;
     setInterval(() => {
         let m = Math.floor(time / 60);
@@ -79,35 +84,40 @@
         if(time < 0) time = 180;
     }, 1000);
 
-    const reviews = [
-        "Trampo muito rápido, nota 10!",
-        "100% seguro, fiz e recebi na hora.",
-        "O Bigode é o brabo, top demais!",
-        "Segunda vez que faço, tudo certo."
-    ];
-
-    function updateContent() {
+    // Status de Atendimento
+    function atualizarStatus() {
         const agora = new Date();
-        const atraso = Math.floor(Math.random() * 30);
-        agora.setMinutes(agora.getMinutes() - atraso);
-        
+        const dia = agora.getDay(); // 0 = Dom, 1 = Seg, ..., 6 = Sáb
         const hora = agora.getHours();
-        const min = agora.getMinutes().toString().padStart(2, '0');
+        const statusSpan = document.getElementById('status-atendimento');
         
-        const tempos = ["Agora", "Hoje às " + hora + ":" + min, "Ontem", "Semana passada"];
+        let estaOnline = false;
+        if (dia >= 1 && dia <= 5 && hora >= 11 && hora < 20) estaOnline = true;
+        else if (dia === 6 && hora >= 11 && hora < 14) estaOnline = true;
+
+        if (estaOnline) {
+            statusSpan.innerText = "ONLINE ✅";
+            statusSpan.style.color = "#00e676";
+        } else {
+            statusSpan.innerText = "OFFLINE 🌙";
+            statusSpan.style.color = "#ff2e2e";
+        }
+    }
+    atualizarStatus();
+    setInterval(atualizarStatus, 60000);
+
+    // Avaliações
+    const reviews = ["Trampo muito rápido, nota 10!", "100% seguro, fiz e recebi na hora.", "O Bigode é o brabo, top demais!", "Segunda vez que faço, tudo certo."];
+    function updateContent() {
         const rev = reviews[Math.floor(Math.random() * reviews.length)];
-        const tempoAleatorio = tempos[Math.floor(Math.random() * tempos.length)];
-        
         document.getElementById('review-box').innerHTML = `
             <div class="stars">⭐⭐⭐⭐⭐</div>
             <div class="rev-text">${rev}</div>
-            <div class="rev-time">Postado: ${tempoAleatorio}</div>
+            <div class="rev-time">Postado: Agora</div>
         `;
-        
         const names = ["João de MG", "Maria do RJ", "Carlos de SP"];
         document.getElementById('live-sale').innerText = names[Math.floor(Math.random() * names.length)] + " acabou de comprar!";
     }
-    
     setInterval(updateContent, 3000);
     updateContent();
 </script>
