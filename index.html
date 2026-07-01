@@ -3,55 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trampos do Bigode | Gerenciamento</title>
+    <title>Trampos do Bigode | Painel</title>
     <style>
-        :root { --bg: #0a0a0a; --card: #141414; --accent: #ff2e2e; --text: #ffffff; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
+        :root { --bg: #0a0a0a; --card: #141414; --red: #ff2e2e; --text: #ffffff; --gray: #888; }
+        body { background-color: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .container { max-width: 450px; width: 100%; }
         
-        /* Hero Section */
-        .hero { display: flex; align-items: center; justify-content: space-between; padding: 60px 10%; }
-        .hero-text { max-width: 50%; }
-        .hero-text h1 { font-size: 50px; margin: 0; }
-        .hero-text span { color: var(--accent); }
+        /* Header */
+        .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+        .logo { font-weight: bold; font-size: 20px; display: flex; align-items: center; }
         
-        /* Grade de Serviços */
-        .services { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; padding: 0 10%; }
-        .service-card { background: var(--card); padding: 20px; border-radius: 15px; text-align: center; border: 1px solid #333; }
-        .btn { display: block; background: #222; padding: 10px; margin-top: 15px; text-decoration: none; color: white; border-radius: 5px; }
+        /* Saldo Destaque */
+        .hero { background: var(--card); padding: 20px; border-radius: 15px; border: 1px solid #333; margin-bottom: 20px; }
+        .btn-red { background: var(--red); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+
+        /* Grid */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .card { background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid #333; text-decoration: none; color: white; }
+        h3 { font-size: 14px; margin: 0 0 5px 0; }
+        p { font-size: 11px; color: var(--gray); margin: 0; }
         
-        /* Barra de Atividades */
-        .footer-bar { background: var(--card); margin: 50px 10%; padding: 20px; border-radius: 10px; display: flex; justify-content: space-between; }
+        /* Footer Métricas */
+        .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; text-align: center; font-size: 12px; color: var(--gray); }
     </style>
 </head>
 <body>
 
-    <header style="padding: 20px 10%; display: flex; justify-content: space-between;">
-        <div style="font-weight: bold; font-size: 24px;"><span style="color:var(--accent)">⚡</span> Trampos do Bigode</div>
-        <nav>Início | Serviços | Contato</nav>
-    </header>
-
-    <section class="hero">
-        <div class="hero-text">
-            <h1>Gerencie <span>tudo.</span><br>Resolva <span>tudo.</span></h1>
-            <p>Acesse saldos, libere crédito e solicite empréstimos. Tudo rápido, seguro e sem complicação.</p>
-        </div>
-        <div style="width: 300px; height: 200px; background: #333; border-radius: 20px;"> <!-- Espaço para a imagem da carteira --> </div>
-    </section>
-
-    <section class="services">
-        <div class="service-card"><h3>Contas</h3><a href="contas.html" class="btn">Acessar →</a></div>
-        <div class="service-card"><h3>Cartão</h3><a href="cartao.html" class="btn">Acessar →</a></div>
-        <div class="service-card"><h3>Empréstimo</h3><a href="emprestimo.html" class="btn">Acessar →</a></div>
-        <div class="service-card"><h3>Sem Taxa</h3><a href="taxa.html" class="btn">Acessar →</a></div>
-        <div class="service-card"><h3>iFood</h3><a href="ifood.html" class="btn">Simular →</a></div>
-        <div class="service-card"><h3>Sorteio</h3><a href="sorteio.html" class="btn">Acessar →</a></div>
-    </section>
-
-    <div class="footer-bar">
-        <div>+12.480 Usuários</div>
-        <div>4.9/5 Avaliação</div>
-        <div>João V. liberou um empréstimo há 1 min</div>
+<div class="container">
+    <div class="header">
+        <div class="logo"><span style="color:var(--red); margin-right:5px;">⚡</span> Trampos do Bigode</div>
     </div>
+
+    <div class="hero">
+        <p>Saldo Disponível</p>
+        <h1 style="margin: 10px 0;">R$ 2.450,00</h1>
+        <p style="color:var(--red);">Liberação via PIX instantânea</p>
+        <div style="margin-top: 15px;">
+            <button class="btn-red">Ver Contas →</button>
+        </div>
+    </div>
+
+    <div class="grid">
+        <a href="contas.html" class="card"><h3>Contas Disponíveis</h3><p>Saldos garantidos.</p></a>
+        <a href="cartao.html" class="card"><h3>Liberar Cartão</h3><p>Acesso rápido.</p></a>
+        <a href="emprestimo.html" class="card"><h3>Empréstimos</h3><p>Limite de até 3k.</p></a>
+        <a href="taxa.html" class="card"><h3>Trampo sem Taxa</h3><p>0% de taxas.</p></a>
+        <a href="ifood.html" class="card"><h3>Saldo iFood</h3><p>Simulador automático.</p></a>
+        <a href="sorteio.html" class="card"><h3>Sorteio Grátis</h3><p>Concorra a prêmios.</p></a>
+    </div>
+
+    <div class="metrics">
+        <div><strong>+12.480</strong><br>Usuários</div>
+        <div><strong>4.9/5</strong><br>Avaliação</div>
+    </div>
+</div>
 
 </body>
 </html>
