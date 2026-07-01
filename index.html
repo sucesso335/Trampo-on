@@ -3,54 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trampos do Bigode</title>
+    <title>Trampos do Bigode | Gerenciamento</title>
     <style>
-        :root { --bg: #121212; --card: #1e1e1e; --text: #fff; --gray: #a0a0a0; --gold: #b8860b; }
-        body { background-color: var(--bg); font-family: sans-serif; color: var(--text); margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .container { max-width: 450px; width: 100%; }
-        .header { text-align: center; margin-bottom: 25px; }
-        h1 { margin: 0; font-size: 28px; }
-        .banner { background: var(--gold); color: #000; padding: 8px 15px; border-radius: 8px; font-weight: bold; margin: 15px 0; display: inline-block; font-size: 14px; }
+        :root { --bg: #0a0a0a; --card: #141414; --accent: #ff2e2e; --text: #ffffff; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         
-        /* Grade 2 colunas */
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .card { background: var(--card); padding: 20px; border-radius: 15px; text-align: center; text-decoration: none; color: white; display: flex; flex-direction: column; align-items: center; border: 1px solid #333; }
-        .card:active { opacity: 0.7; transform: scale(0.98); }
-        h3 { font-size: 14px; margin: 10px 0 0 0; }
+        /* Hero Section */
+        .hero { display: flex; align-items: center; justify-content: space-between; padding: 60px 10%; }
+        .hero-text { max-width: 50%; }
+        .hero-text h1 { font-size: 50px; margin: 0; }
+        .hero-text span { color: var(--accent); }
         
-        /* ADM */
-        .adm-box { background: var(--card); padding: 15px; border-radius: 15px; margin-top: 20px; display: flex; align-items: center; text-decoration: none; color: white; border: 1px solid #333; }
-        .adm-img { width: 50px; height: 50px; border-radius: 50%; margin-right: 15px; object-fit: cover; }
-        .status { color: #00e676; font-size: 12px; margin-top: 4px; }
+        /* Grade de Serviços */
+        .services { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; padding: 0 10%; }
+        .service-card { background: var(--card); padding: 20px; border-radius: 15px; text-align: center; border: 1px solid #333; }
+        .btn { display: block; background: #222; padding: 10px; margin-top: 15px; text-decoration: none; color: white; border-radius: 5px; }
+        
+        /* Barra de Atividades */
+        .footer-bar { background: var(--card); margin: 50px 10%; padding: 20px; border-radius: 10px; display: flex; justify-content: space-between; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header">
-        <h1>Trampos do Bigode</h1>
-        <p style="color: var(--gray); font-size: 14px; margin-top: 5px;">Bem vindos aos trampos</p>
-        <div class="banner">Confiança gera Conquista</div>
-    </div>
+    <header style="padding: 20px 10%; display: flex; justify-content: space-between;">
+        <div style="font-weight: bold; font-size: 24px;"><span style="color:var(--accent)">⚡</span> Trampos do Bigode</div>
+        <nav>Início | Serviços | Contato</nav>
+    </header>
 
-    <div class="grid">
-        <a href="contas.html" class="card"><div>🏦</div><h3>Contas</h3></a>
-        <a href="cartao.html" class="card"><div>💳</div><h3>Cartão</h3></a>
-        <a href="emprestimo.html" class="card"><div>💰</div><h3>Empréstimo</h3></a>
-        <a href="taxa.html" class="card"><div>🚫</div><h3>Sem Taxa</h3></a>
-        <a href="ifood.html" class="card"><div>🍔</div><h3>Saldo iFood</h3></a>
-        <a href="sorteio.html" class="card"><div>🎁</div><h3>Sorteio</h3></a>
-    </div>
-
-    <!-- Link do WhatsApp configurado com seu número -->
-    <a href="https://wa.me/5532987194791" class="adm-box">
-        <img src="image_4.png" class="adm-img" alt="ADM">
-        <div>
-            <div style="font-weight: bold;">Falar com ADM</div>
-            <div class="status">● Online</div>
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Gerencie <span>tudo.</span><br>Resolva <span>tudo.</span></h1>
+            <p>Acesse saldos, libere crédito e solicite empréstimos. Tudo rápido, seguro e sem complicação.</p>
         </div>
-    </a>
-</div>
+        <div style="width: 300px; height: 200px; background: #333; border-radius: 20px;"> <!-- Espaço para a imagem da carteira --> </div>
+    </section>
+
+    <section class="services">
+        <div class="service-card"><h3>Contas</h3><a href="contas.html" class="btn">Acessar →</a></div>
+        <div class="service-card"><h3>Cartão</h3><a href="cartao.html" class="btn">Acessar →</a></div>
+        <div class="service-card"><h3>Empréstimo</h3><a href="emprestimo.html" class="btn">Acessar →</a></div>
+        <div class="service-card"><h3>Sem Taxa</h3><a href="taxa.html" class="btn">Acessar →</a></div>
+        <div class="service-card"><h3>iFood</h3><a href="ifood.html" class="btn">Simular →</a></div>
+        <div class="service-card"><h3>Sorteio</h3><a href="sorteio.html" class="btn">Acessar →</a></div>
+    </section>
+
+    <div class="footer-bar">
+        <div>+12.480 Usuários</div>
+        <div>4.9/5 Avaliação</div>
+        <div>João V. liberou um empréstimo há 1 min</div>
+    </div>
 
 </body>
 </html>
