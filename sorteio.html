@@ -3,86 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorteios | Trampos do Bigode</title>
+    <title>🔥 sorteio Premiado | Trampos do Bigode</title>
     <style>
-        :root { --bg: #0a0a0a; --card: #141414; --red: #ff2e2e; --text: #ffffff; --green: #00e676; --border: #333; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        :root { --bg: #0a0a0a; --red: #ff2e2e; --gold: #ffd700; --green: #00e676; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial Black', sans-serif; }
 
-        body { background-color: var(--bg); color: var(--text); padding: 20px; display: flex; justify-content: center; min-height: 100vh; }
-        .container { max-width: 450px; width: 100%; background: var(--card); border: 1px solid var(--border); padding: 25px; border-radius: 20px; }
+        body { background-color: var(--bg); color: #fff; padding: 20px; display: flex; justify-content: center; min-height: 100vh; }
+        .container { max-width: 400px; width: 100%; background: #141414; padding: 25px; border-radius: 20px; border: 2px solid var(--red); box-shadow: 0 0 20px rgba(255, 46, 46, 0.3); }
 
-        header { text-align: center; margin-bottom: 25px; }
-        h1 { color: var(--red); font-size: 24px; margin-bottom: 5px; }
+        h1 { text-align: center; color: var(--gold); font-size: 28px; text-transform: uppercase; margin-bottom: 10px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        .premio-box { border: 2px dashed var(--gold); padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 20px; background: #000; }
+        .valor-premio { font-size: 35px; color: var(--gold); display: block; text-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
         
-        label { display: block; margin-top: 15px; font-size: 13px; color: #ccc; }
-        input, select { width: 100%; padding: 12px; margin-top: 5px; border-radius: 8px; border: 1px solid var(--border); background: #000; color: white; }
+        label { color: #aaa; font-size: 12px; margin-top: 15px; display: block; }
+        input, select { width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: white; border-radius: 8px; margin-top: 5px; }
         
-        .total-box { background: #000; border: 1px solid var(--border); padding: 15px; border-radius: 10px; margin-top: 20px; display: flex; justify-content: space-between; align-items: center; }
-        .total-valor { font-size: 20px; color: var(--green); font-weight: bold; }
-
-        .btn-participar { display: block; width: 100%; background: var(--red); color: white; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 25px; text-decoration: none; text-align: center; box-shadow: 0 4px 15px rgba(255, 46, 46, 0.3); }
-        .btn-voltar { display: block; text-align: center; margin-top: 20px; color: #666; font-size: 12px; text-decoration: none; }
+        .btn-sorte { background: linear-gradient(45deg, var(--red), #ff0000); color: white; border: none; padding: 18px; width: 100%; border-radius: 10px; font-weight: bold; font-size: 18px; margin-top: 25px; cursor: pointer; text-transform: uppercase; box-shadow: 0 5px 15px rgba(255, 46, 46, 0.4); }
+        
+        .total-box { text-align: center; margin-top: 20px; font-size: 20px; color: var(--green); }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>Nossos Sorteios</h1>
-        </header>
-
-        <form id="formSorteio" onsubmit="enviarSorteio(event)">
-            <label>Selecione o Sorteio:</label>
-            <select id="tipoSorteio" onchange="calcularTotal()">
-                <option value="1000">Sorteio R$ 1.000,00 (R$ 5/número)</option>
-                <option value="ifood">Saldo iFood (R$ 1/número)</option>
-            </select>
-
-            <label>Seu Nome Completo:</label>
-            <input type="text" id="nome" class="campo-input" placeholder="Digite seu nome..." required>
-
-            <label>Seu WhatsApp:</label>
-            <input type="text" id="contato" class="campo-input" placeholder="(00) 00000-0000" required>
-
-            <label>Quantidade de números:</label>
-            <input type="number" id="quantidade" class="campo-input" min="1" value="1" oninput="calcularTotal()" required>
-
-            <div class="total-box">
-                <span>Valor Total:</span>
-                <span class="total-valor" id="totalValor">R$ 5,00</span>
-            </div>
-
-            <button type="submit" class="btn-participar">RESERVAR NÚMEROS</button>
-        </form>
-
-        <a href="index.html" class="btn-voltar">← Voltar para o Painel</a>
+<div class="container">
+    <h1>🍀 A SUA SORTE É HOJE!</h1>
+    
+    <div class="premio-box">
+        <span style="font-size: 14px;">ESCOLHA O SEU BILHETE</span>
+        <span class="valor-premio" id="displayPremio">R$ 1.000,00</span>
     </div>
 
-    <script>
-        function calcularTotal() {
-            let tipo = document.getElementById('tipoSorteio').value;
-            let qtd = document.getElementById('quantidade').value;
-            let preco = (tipo === 'ifood') ? 1 : 5;
-            let total = qtd * preco;
-            document.getElementById('totalValor').innerText = "R$ " + total.toFixed(2).replace('.', ',');
-        }
+    <form id="formSorteio" onsubmit="enviarSorteio(event)">
+        <label>SORTEIO:</label>
+        <select id="tipoSorteio" onchange="atualizarPremio()">
+            <option value="1000">Sorteio de R$ 1.000 (R$ 5/num)</option>
+            <option value="ifood">Saldo iFood (R$ 1/num)</option>
+        </select>
 
-        function enviarSorteio(event) {
-            event.preventDefault();
-            let tipo = document.getElementById('tipoSorteio').options[document.getElementById('tipoSorteio').selectedIndex].text;
-            let nome = document.getElementById('nome').value;
-            let contato = document.getElementById('contato').value;
-            let qtd = document.getElementById('quantidade').value;
-            let valorTotal = document.getElementById('totalValor').innerText;
+        <label>NOME COMPLETO:</label>
+        <input type="text" id="nome" placeholder="Seu nome" required>
 
-            let mensagem = `Olá Bigode! Quero participar do sorteio: ${tipo}.
-            *Nome:* ${nome}
-            *Contato:* ${contato}
-            *Quantidade:* ${qtd} números
-            *Valor total:* ${valorTotal}`;
+        <label>WHATSAPP:</label>
+        <input type="text" id="contato" placeholder="(00) 00000-0000" required>
 
-            window.open("https://wa.me/5532987194791?text=" + encodeURIComponent(mensagem), '_blank');
-        }
-    </script>
+        <label>QUANTOS NÚMEROS?</label>
+        <input type="number" id="quantidade" min="1" value="1" oninput="calcularTotal()" required>
+
+        <div class="total-box">
+            VALOR: <span id="totalValor">R$ 5,00</span>
+        </div>
+
+        <button type="submit" class="btn-sorte">COMPRAR MEUS NÚMEROS!</button>
+    </form>
+</div>
+
+<script>
+    function atualizarPremio() {
+        let tipo = document.getElementById('tipoSorteio').value;
+        document.getElementById('displayPremio').innerText = (tipo === 'ifood') ? "Saldo iFood" : "R$ 1.000,00";
+        calcularTotal();
+    }
+
+    function calcularTotal() {
+        let tipo = document.getElementById('tipoSorteio').value;
+        let qtd = document.getElementById('quantidade').value;
+        let preco = (tipo === 'ifood') ? 1 : 5;
+        document.getElementById('totalValor').innerText = "R$ " + (qtd * preco).toFixed(2).replace('.', ',');
+    }
+
+    function enviarSorteio(event) {
+        event.preventDefault();
+        let tipo = document.getElementById('tipoSorteio').options[document.getElementById('tipoSorteio').selectedIndex].text;
+        let msg = `🔥 QUERO GANHAR!%0A*Sorteio:* ${tipo}%0A*Nome:* ${document.getElementById('nome').value}%0A*Qtd:* ${document.getElementById('quantidade').value} números%0A*Total:* ${document.getElementById('totalValor').innerText}`;
+        window.open("https://wa.me/5532987194791?text=" + msg, '_blank');
+    }
+</script>
 </body>
 </html>
