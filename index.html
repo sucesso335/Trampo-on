@@ -12,8 +12,10 @@
         .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
         .logo { font-weight: bold; font-size: 20px; }
         
-        .hero { background: var(--card); padding: 25px; border-radius: 20px; border: 1px solid #333; margin-bottom: 20px; position: relative; }
-        .pix-key { background: #000; padding: 10px; border-radius: 8px; font-family: monospace; border: 1px solid var(--red); margin-top: 15px; color: var(--red); text-align: center; }
+        .hero { background: var(--card); padding: 25px; border-radius: 20px; border: 1px solid #333; margin-bottom: 20px; position: relative; text-align: center; }
+        
+        /* Temporizador */
+        .timer-box { background: #000; padding: 15px; border-radius: 12px; border: 1px solid var(--red); margin-top: 15px; color: var(--red); font-weight: bold; font-size: 1.2em; }
 
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .card { background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid #333; text-decoration: none; color: white; display: flex; align-items: center; gap: 10px; }
@@ -23,6 +25,10 @@
         
         .adm-box { background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid #333; display: flex; align-items: center; gap: 15px; margin-top: 20px; text-decoration: none; color: white; }
         .adm-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+        
+        /* Comentários */
+        .comments { margin-top: 20px; }
+        .comment { background: var(--card); padding: 12px; border-radius: 10px; margin-bottom: 10px; font-size: 12px; border-left: 3px solid var(--red); }
     </style>
 </head>
 <body>
@@ -33,12 +39,10 @@
     </div>
 
     <div class="hero">
-        <!-- Imagem do trevo incluída -->
-        <img src="image_5.png" alt="Sorte" style="position: absolute; right: 20px; top: 20px; width: 70px;">
-        
+        <img src="IMG_5980.jpeg" alt="Banner" style="width: 100%; border-radius: 10px; margin-bottom: 15px;">
         <h1 style="margin: 0;">Confiança gera Conquista</h1>
-        <p>Acesse saldos, libere crédito e solicite empréstimos.</p>
-        <div class="pix-key">SUA-CHAVE-PIX-AQUI</div>
+        <p>Trampos liberados por tempo ilimitado.</p>
+        <div class="timer-box" id="timer">00:00:00</div>
     </div>
 
     <div class="grid">
@@ -50,7 +54,6 @@
         <a href="sorteio.html" class="card"><div class="icon-box">🎁</div><div><h3>Sorteio</h3><p>Concorra a prêmios.</p></div></a>
     </div>
 
-    <!-- Imagem do perfil do ADM atualizada -->
     <a href="https://wa.me/5532987194791" class="adm-box">
         <img src="IMG_5968.png" class="adm-img" alt="ADM">
         <div>
@@ -58,7 +61,28 @@
             <div style="color: #00e676; font-size: 12px;">● Online</div>
         </div>
     </a>
+
+    <div class="comments">
+        <div class="comment"><strong>Carlos Silva:</strong> Trampo muito rápido, já caiu na hora! Recomendo.</div>
+        <div class="comment"><strong>Ana Paula:</strong> Segunda vez que faço e deu certo, top demais.</div>
+        <div class="comment"><strong>Bigode Fan:</strong> O melhor serviço que já usei, sem erro!</div>
+    </div>
 </div>
+
+<script>
+    // Simples temporizador rodando
+    let seconds = 0;
+    setInterval(() => {
+        seconds++;
+        let hrs = Math.floor(seconds / 3600);
+        let mins = Math.floor((seconds % 3600) / 60);
+        let secs = seconds % 60;
+        document.getElementById('timer').innerText = 
+            (hrs < 10 ? "0" + hrs : hrs) + ":" + 
+            (mins < 10 ? "0" + mins : mins) + ":" + 
+            (secs < 10 ? "0" + secs : secs);
+    }, 1000);
+</script>
 
 </body>
 </html>
