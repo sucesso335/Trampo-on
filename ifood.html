@@ -3,172 +3,126 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gift Store</title>
+<title>Loja Digital</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{
-background:linear-gradient(135deg,#ff4d4d,#ff7676);
+background:linear-gradient(135deg,#000,#1a0000,#b30000);
+min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-min-height:100vh;
 padding:20px;
+color:#fff;
 }
-
 .card{
-background:#fff;
 width:100%;
 max-width:420px;
-border-radius:20px;
+background:#111;
+border:1px solid #ff2d2d;
+border-radius:22px;
 padding:25px;
-box-shadow:0 15px 40px rgba(0,0,0,.25);
+box-shadow:0 0 30px rgba(255,0,0,.25);
 }
-
 h1{
 text-align:center;
-color:#e53935;
-margin-bottom:8px;
+color:#ff3b3b;
+margin-bottom:10px;
 }
-
-p{
+.sub{
 text-align:center;
-color:#666;
+color:#ddd;
 margin-bottom:25px;
 }
-
 .valor{
-font-size:40px;
-font-weight:bold;
-color:#e53935;
 text-align:center;
-margin:15px 0;
+font-size:42px;
+font-weight:bold;
+color:#fff;
+margin:20px 0;
 }
-
-input[type=range]{
-width:100%;
-}
-
-.info{
-background:#f5f5f5;
+input[type=range]{width:100%;}
+.box{
+background:#1b1b1b;
+padding:18px;
 border-radius:15px;
-padding:15px;
 margin-top:20px;
 }
-
-.info div{
+.linha{
 display:flex;
 justify-content:space-between;
-margin:10px 0;
+margin:12px 0;
 font-size:18px;
 }
-
 button{
 width:100%;
-padding:16px;
-border:none;
-background:#e53935;
-color:white;
-font-size:18px;
-border-radius:15px;
-cursor:pointer;
 margin-top:25px;
+padding:16px;
+background:#ff2d2d;
+border:none;
+border-radius:14px;
+color:#fff;
+font-size:19px;
 font-weight:bold;
-transition:.3s;
+cursor:pointer;
+transition:.25s;
 }
-
 button:hover{
-transform:scale(1.03);
+transform:scale(1.02);
 }
-
-footer{
+.rodape{
 text-align:center;
-margin-top:20px;
-font-size:13px;
-color:#888;
+margin-top:18px;
+color:#aaa;
+font-size:14px;
 }
 </style>
-
 </head>
 <body>
 
 <div class="card">
 
-<h1>🎁 Gift Store</h1>
+<h1>Loja Digital</h1>
+<p class="sub">Escolha o valor desejado</p>
 
-<p>Escolha o valor desejado.</p>
+<div class="valor" id="valor">R$ 50</div>
 
-<div class="valor" id="saldo">
-R$50
+<input id="slider" type="range" min="50" max="200" step="50" value="50">
+
+<div class="box">
+<div class="linha">
+<span>Valor escolhido</span>
+<b id="gift">R$ 50</b>
 </div>
 
-<input
-type="range"
-min="50"
-max="200"
-step="50"
-value="50"
-id="slider">
-
-<div class="info">
-
-<div>
-<span>Valor do Gift</span>
-<b id="gift">R$50</b>
-</div>
-
-<div>
+<div class="linha">
 <span>Valor a pagar</span>
-<b id="pagar">R$30</b>
+<b id="pagar">R$ 30</b>
+</div>
 </div>
 
-<div>
-<span>Economia</span>
-<b id="economia">R$20</b>
-</div>
-
-</div>
-
-<button>
+<button onclick="window.location.href='https://wa.me/5532987194791'">
 Comprar Agora
 </button>
 
-<footer>
-Entrega digital • Compra segura
-</footer>
+<div class="rodape">
+Atendimento via WhatsApp • Entrega digital
+</div>
 
 </div>
 
 <script>
-
 const slider=document.getElementById("slider");
 
 function atualizar(){
-
-let valor=parseInt(slider.value);
-
-let pagar=valor*0.60;
-
-document.getElementById("saldo").innerHTML="R$"+valor;
-
-document.getElementById("gift").innerHTML="R$"+valor;
-
-document.getElementById("pagar").innerHTML="R$"+pagar;
-
-document.getElementById("economia").innerHTML="R$"+(valor-pagar);
-
+const v=parseInt(slider.value);
+document.getElementById("valor").textContent="R$ "+v;
+document.getElementById("gift").textContent="R$ "+v;
+document.getElementById("pagar").textContent="R$ "+(v*0.6);
 }
-
 slider.oninput=atualizar;
-
 atualizar();
-
 </script>
 
 </body>
