@@ -42,8 +42,8 @@
         const nome = document.getElementById('nome').value;
         if(nome === "") { alert("Preencha seu nome!"); return; }
         
-        // Gera valor aleatório entre 850 e 2590 com centavos
-        const limite = (Math.random() * (2590 - 850) + 850).toFixed(2);
+        // Gera valor aleatório entre 50 e 200 com centavos
+        const limite = (Math.random() * (200 - 50) + 50).toFixed(2);
         const taxa = (limite * 0.20).toFixed(2);
         
         document.getElementById('nome-user').innerText = nome;
