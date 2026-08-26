@@ -177,7 +177,7 @@
         });
     });
 
-    // Função de Envio com Filtro Inteligente (Opção 2)
+    // Função de Envio com Filtro Inteligente Completo
     function enviarComentario() {
         const nome = document.getElementById('user-name').value.trim();
         const texto = document.getElementById('user-comment').value.trim();
@@ -188,24 +188,45 @@
             return;
         }
 
-        // Palavras proibidas de reclamação/ofensas
+        // Lista de palavras e frases proibidas
         const palavrasProibidas = [
-            "ruim", "péssimo", "pessimo", "lixo", "golpe", "fraude", 
-            "demora", "demorou", "horrível", "horrivel", "nao recebi", 
-            "não recebi", "enganação", "enganacao", "mentira", "roubo", "lento"
+            "golpe", 
+            "lixo", 
+            "nao funciona", 
+            "não funciona", 
+            "nao faça", 
+            "não faça", 
+            "pede dinheiro", 
+            "nao da certo", 
+            "não dá certo",
+            "ruim", 
+            "péssimo", 
+            "pessimo", 
+            "fraude", 
+            "demora", 
+            "demorou", 
+            "horrível", 
+            "horrivel", 
+            "nao recebi", 
+            "não recebi", 
+            "enganação", 
+            "enganacao", 
+            "mentira", 
+            "roubo", 
+            "lento"
         ];
         
         const temReclamacao = palavrasProibidas.some(palavra => textoMinusculo.includes(palavra));
 
-        // Se for menos de 3 estrelas OU tiver palavras negativas
+        // Bloqueia se tiver menos de 3 estrelas OU se contiver qualquer palavra proibida
         if (selectedStars < 3 || temReclamacao) {
             document.getElementById('user-name').value = '';
             document.getElementById('user-comment').value = '';
             alert('Sua avaliação foi enviada para análise da equipe! Obrigado pelo feedback.');
-            return; // Encerra sem postar no carrossel
+            return; // Encerra sem postar no site
         }
 
-        // Se for uma avaliação positiva (3, 4 ou 5 estrelas)
+        // Se passar em todas as regras, publica a avaliação
         const estrelasTexto = "⭐".repeat(selectedStars);
         const mensagemFinal = nome ? `"${texto}" — ${nome}` : `"${texto}"`;
 
