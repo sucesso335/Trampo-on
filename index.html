@@ -30,6 +30,15 @@
         .stars { color: #FFD700; font-size: 16px; margin-bottom: 5px; }
         .rev-text { font-size: 14px; margin: 5px 0; }
         
+        /* Formulário de Avaliação */
+        .add-review-box { background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid #333; margin-top: 20px; }
+        .add-review-box h4 { margin: 0 0 10px 0; font-size: 14px; text-align: center; color: var(--text); }
+        .star-rating { display: flex; justify-content: center; gap: 5px; font-size: 22px; cursor: pointer; margin-bottom: 10px; }
+        .star-rating span { color: #444; transition: color 0.2s; }
+        .star-rating span.active { color: #FFD700; }
+        .add-review-box input, .add-review-box textarea { width: 100%; box-sizing: border-box; background: #1a1a1a; border: 1px solid #333; color: #fff; padding: 8px; border-radius: 8px; margin-bottom: 8px; font-size: 12px; }
+        .add-review-box button { width: 100%; background: var(--green); color: #000; font-weight: bold; border: none; padding: 10px; border-radius: 8px; cursor: pointer; }
+        
         .stats-footer { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
         .stat-card { background: #1a1a1a; padding: 10px; border-radius: 10px; border: 1px solid #333; font-size: 12px; text-align: center; }
     </style>
@@ -63,7 +72,23 @@
         </div>
     </a>
 
+    <!-- Avaliação Exibida -->
     <div class="review-card" id="review-box">Carregando avaliações...</div>
+
+    <!-- Formulário para o Usuário Enviar Avaliação -->
+    <div class="add-review-box">
+        <h4>Deixe seu comentário</h4>
+        <div class="star-rating" id="star-select">
+            <span data-val="1">★</span>
+            <span data-val="2">★</span>
+            <span data-val="3">★</span>
+            <span data-val="4">★</span>
+            <span data-val="5" class="active">★</span>
+        </div>
+        <input type="text" id="user-name" placeholder="Seu nome">
+        <textarea id="user-comment" rows="2" placeholder="Escreva seu comentário..."></textarea>
+        <button onclick="enviarComentario()">Enviar Avaliação</button>
+    </div>
 
     <div class="stats-footer">
         <div class="stat-card">🛡️ 100% SEGURO</div>
@@ -77,7 +102,7 @@
     // Status de Atendimento
     function atualizarStatus() {
         const agora = new Date();
-        const dia = agora.getDay(); // 0 = Dom, 1 = Seg, ..., 6 = Sáb
+        const dia = agora.getDay();
         const hora = agora.getHours();
         const statusSpan = document.getElementById('status-atendimento');
         
@@ -96,19 +121,63 @@
     atualizarStatus();
     setInterval(atualizarStatus, 60000);
 
-    // Avaliações (Sem tempo de postagem)
-    const reviews = ["Trampo muito rápido, nota 10!", "100% seguro, fiz e recebi na hora.", "O Bigode é o brabo, top demais!", "Segunda vez que faço, tudo certo."];
+    // Sistema de Avaliações
+    const reviews = [
+        { stars: "⭐⭐⭐⭐⭐", text: "Trampo muito rápido, nota 10!" },
+        { stars: "⭐⭐⭐⭐⭐", text: "100% seguro, fiz e recebi na hora." },
+        { stars: "⭐⭐⭐⭐⭐", text: "O Bigode é o brabo, top demais!" },
+        { stars: "⭐⭐⭐⭐⭐", text: "Segunda vez que faço, tudo certo." }
+    ];
+
     function updateContent() {
         const rev = reviews[Math.floor(Math.random() * reviews.length)];
         document.getElementById('review-box').innerHTML = `
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            <div class="rev-text">${rev}</div>
+            <div class="stars">${rev.stars}</div>
+            <div class="rev-text">${rev.text}</div>
         `;
         const names = ["João de MG", "Maria do RJ", "Carlos de SP"];
         document.getElementById('live-sale').innerText = names[Math.floor(Math.random() * names.length)] + " acabou de comprar!";
     }
-    setInterval(updateContent, 3000);
+    setInterval(updateContent, 4000);
     updateContent();
+
+    // Seleção de Estrelas
+    let selectedStars = 5;
+    const starSpans = document.querySelectorAll('#star-select span');
+    starSpans.forEach(star => {
+        star.addEventListener('click', () => {
+            selectedStars = parseInt(star.getAttribute('data-val'));
+            starSpans.forEach((s, idx) => {
+                if (idx < selectedStars) s.classList.add('active');
+                else s.classList.remove('active');
+            });
+        });
+    });
+
+    // Enviar Novo Comentário
+    function enviarComentario() {
+        const nome = document.getElementById('user-name').value.trim();
+        const texto = document.getElementById('user-comment').value.trim();
+
+        if (!texto) {
+            alert('Por favor, escreva um comentário.');
+            return;
+        }
+
+        const estrelasTexto = "⭐".repeat(selectedStars);
+        const mensagemFinal = nome ? `"${texto}" - ${nome}` : `"${texto}"`;
+
+        reviews.unshift({ stars: estrelasTexto, text: mensagemFinal });
+
+        document.getElementById('review-box').innerHTML = `
+            <div class="stars">${estrelasTexto}</div>
+            <div class="rev-text">${mensagemFinal}</div>
+        `;
+
+        document.getElementById('user-name').value = '';
+        document.getElementById('user-comment').value = '';
+        alert('Avaliação enviada com sucesso!');
+    }
 </script>
 
 </body>
