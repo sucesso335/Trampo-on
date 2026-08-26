@@ -22,21 +22,23 @@
         
         #live-sale { background: #1a1a1a; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 15px; border: 1px solid #444; color: var(--green); text-align: center; }
         
-        .section-box { background: var(--card); padding: 20px; border-radius: 15px; border: 1px solid #333; margin-bottom: 20px; }
-        .section-box h3 { font-size: 16px; margin-bottom: 10px; color: var(--green); text-align: center; }
-        
-        input, select { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #444; background: #000; color: white; box-sizing: border-box; }
-        .btn-action { display: block; width: 100%; padding: 14px; background: var(--green); color: #000; font-weight: bold; text-align: center; border-radius: 8px; text-decoration: none; border: none; cursor: pointer; margin-top: 10px; box-sizing: border-box; }
-        
         .group-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #25d366; color: #000; font-weight: bold; font-size: 14px; text-decoration: none; padding: 15px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
 
         .adm-box { background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid #333; display: flex; align-items: center; gap: 15px; margin-bottom: 20px; text-decoration: none; color: white; }
         .adm-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
         
-        /* Box de Avaliações em Carrossel Dinâmico */
         .review-card { background: #1a1a1a; padding: 15px; border-radius: 12px; border: 1px solid #444; min-height: 70px; display: flex; flex-direction: column; justify-content: center; transition: opacity 0.3s ease; }
         .stars { color: #FFD700; font-size: 14px; margin-bottom: 6px; }
         .rev-text { font-size: 13px; margin: 0; color: #ddd; }
+
+        /* Formulário de Avaliação */
+        .add-review-box { background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid #333; margin-top: 20px; }
+        .add-review-box h4 { margin: 0 0 10px 0; font-size: 14px; text-align: center; color: var(--text); }
+        .star-rating { display: flex; justify-content: center; gap: 5px; font-size: 22px; cursor: pointer; margin-bottom: 10px; }
+        .star-rating span { color: #444; transition: color 0.2s; }
+        .star-rating span.active { color: #FFD700; }
+        .add-review-box input, .add-review-box textarea { width: 100%; box-sizing: border-box; background: #1a1a1a; border: 1px solid #333; color: #fff; padding: 8px; border-radius: 8px; margin-bottom: 8px; font-size: 12px; }
+        .add-review-box button { width: 100%; background: var(--green); color: #000; font-weight: bold; border: none; padding: 10px; border-radius: 8px; cursor: pointer; }
 
         .stats-footer { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
         .stat-card { background: #1a1a1a; padding: 10px; border-radius: 10px; border: 1px solid #333; font-size: 12px; text-align: center; }
@@ -54,52 +56,16 @@
         <p style="font-size: 12px; color: #888;">Escolha seu trampo abaixo.</p>
     </div>
 
+    <!-- Grade Principal de Botões -->
     <div class="grid">
         <a href="contas.html" class="card"><div class="icon-box">🏛️</div><div><h3>Contas com saldo</h3><p>Saldos garantidos.</p></div></a>
         <a href="cartao.html" class="card"><div class="icon-box">💳</div><div><h3>Cartão</h3><p>Acesso rápido.</p></div></a>
-        <a href="#aprovacao-50" class="card"><div class="icon-box">🤝</div><div><h3>Aprovação 50%</h3><p>Pague só após aprovar.</p></div></a>
-        <a href="#seguidores-box" class="card"><div class="icon-box">🚀</div><div><h3>Seguidores</h3><p>Insta & TikTok.</p></div></a>
-        <a href="#shopee-ml" class="card"><div class="icon-box">🛍️</div><div><h3>Aprovação Shopee</h3><p>Contas e limites.</p></div></a>
-        <a href="#shopee-ml" class="card"><div class="icon-box">📦</div><div><h3>Mercado Livre</h3><p>Aprovação rápida.</p></div></a>
+        <a href="aprovacao.html" class="card"><div class="icon-box">🤝</div><div><h3>Aprovação 50%</h3><p>ML, Shopee & iFood.</p></div></a>
+        <a href="seguidores.html" class="card"><div class="icon-box">🚀</div><div><h3>Seguidores</h3><p>Insta & TikTok.</p></div></a>
         <a href="emprestimo.html" class="card"><div class="icon-box">💰</div><div><h3>Empréstimo</h3><p>Limite até 3k.</p></div></a>
         <a href="ifood.html" class="card"><div class="icon-box">🍔</div><div><h3>Saldo iFood</h3><p>Simulador 100/200.</p></div></a>
-    </div>
-
-    <!-- Seção Aprovação 50% -->
-    <div class="section-box" id="aprovacao-50">
-        <h3>Aprovação 50% (Pague Após Aprovar)</h3>
-        <p style="font-size: 11px; color: #888; text-align: center; margin-bottom: 10px;">Insira seu nome e a Chave PIX da conta onde será feita a aprovação:</p>
-        <input type="text" id="pix-nome" placeholder="Seu Nome Completo">
-        <input type="text" id="pix-chave" placeholder="Digite sua Chave PIX">
-        <button onclick="solicitarAprovacao50()" class="btn-action">SOLICITAR APROVAÇÃO</button>
-    </div>
-
-    <!-- Seção Seguidores -->
-    <div class="section-box" id="seguidores-box">
-        <h3>Painel de Seguidores (Mín: 100 | Máx: 100.000)</h3>
-        <select id="rede-social">
-            <option value="Instagram">Instagram</option>
-            <option value="TikTok">TikTok</option>
-        </select>
-        <input type="text" id="user-rede" placeholder="Seu @ ou link do perfil">
-        <input type="number" id="qtd-seguidores" placeholder="Quantidade (ex: 1000)" min="100" max="100000" oninput="calcularSeguidores()">
-        
-        <div style="margin-top: 10px; font-size: 14px; text-align: center;">
-            Valor da taxa (10%): <strong id="valor-seguidores" style="color: var(--green);">R$ 0,00</strong>
-        </div>
-        <button onclick="pedirSeguidores()" class="btn-action">CONTRATAR SEGUIDORES</button>
-    </div>
-
-    <!-- Seção Shopee / Mercado Livre -->
-    <div class="section-box" id="shopee-ml">
-        <h3>Aprovação Shopee & Mercado Livre</h3>
-        <p style="font-size: 11px; color: #888; text-align: center; margin-bottom: 10px;">Escolha a plataforma que deseja aprovação imediata:</p>
-        <select id="plataforma-select">
-            <option value="Shopee">Aprovação Shopee</option>
-            <option value="Mercado Livre">Aprovação Mercado Livre</option>
-        </select>
-        <input type="text" id="plataforma-nome" placeholder="Seu Nome Completo">
-        <button onclick="solicitarPlataforma()" class="btn-action">ENVIAR PARA APROVAÇÃO</button>
+        <a href="taxa.html" class="card"><div class="icon-box">🛡️</div><div><h3>Sem Taxa</h3><p>0% nas operações.</p></div></a>
+        <a href="sorteio.html" class="card"><div class="icon-box">🎁</div><div><h3>Sorteio</h3><p>Concorra a prêmios.</p></div></a>
     </div>
 
     <!-- Grupo WhatsApp -->
@@ -116,12 +82,27 @@
         </div>
     </a>
 
-    <!-- Avaliações em Carrossel Alternante -->
-    <div class="section-box">
-        <h3 style="color: #fff; text-align: left; margin-bottom: 12px;">Depoimentos da Galera</h3>
+    <!-- Depoimentos Rotativos -->
+    <div style="margin-top: 20px;">
+        <h4 style="margin-bottom: 8px;">Depoimentos da Galera</h4>
         <div class="review-card" id="review-slider">
-            <!-- Conteúdo injetado pelo JavaScript -->
+            <!-- Conteúdo dinâmico via JS -->
         </div>
+    </div>
+
+    <!-- Formulário para Avaliar -->
+    <div class="add-review-box">
+        <h4>Deixe seu comentário</h4>
+        <div class="star-rating" id="star-select">
+            <span data-val="1">★</span>
+            <span data-val="2">★</span>
+            <span data-val="3">★</span>
+            <span data-val="4">★</span>
+            <span data-val="5" class="active">★</span>
+        </div>
+        <input type="text" id="user-name" placeholder="Seu nome">
+        <textarea id="user-comment" rows="2" placeholder="Escreva seu comentário..."></textarea>
+        <button onclick="enviarComentario()">Enviar Avaliação</button>
     </div>
 
     <div class="stats-footer">
@@ -133,7 +114,7 @@
 </div>
 
 <script>
-    // Atualização de Status
+    // Status de Atendimento Online/Offline
     function atualizarStatus() {
         const agora = new Date();
         const dia = agora.getDay();
@@ -146,28 +127,22 @@
     }
     atualizarStatus();
 
-    // Notificação dinâmica de Vendas na Tela
-    const names = ["João de MG", "Maria do RJ", "Carlos de SP", "Lucas de BA", "Fernanda de SC", "Rafael do RS", "Bruno de GO", "Patricia de PR"];
+    // Notificação dinâmica de Vendas
+    const names = ["João de MG", "Maria do RJ", "Carlos de SP", "Lucas de BA", "Fernanda de SC", "Rafael do RS"];
     function updateSales() {
         document.getElementById('live-sale').innerText = names[Math.floor(Math.random() * names.length)] + " acabou de realizar uma aprovação!";
     }
     setInterval(updateSales, 5000);
     updateSales();
 
-    // Lista Ampla de Avaliações Sem Repetição Seguida
+    // Carrossel de Depoimentos DIVERSOS (Sem repetição estática)
     const listaReviews = [
         { stars: "⭐⭐⭐⭐⭐", text: "\"Trampo muito rápido e 100% seguro! Nota 10 pro Bigode.\" — Marcos S. (SP)" },
-        { stars: "⭐⭐⭐⭐", text: "\"Muito bom, demorou uns 5 minutinhos mas deu tudo certo no final.\" — Lucas T. (RJ)" },
+        { stars: "⭐⭐⭐⭐", text: "\"Muito bom, demorou uns 5 minutinhos mas deu tudo certo.\" — Lucas T. (RJ)" },
         { stars: "⭐⭐⭐⭐⭐", text: "\"Achei excelente, os seguidores no Insta caíram direitinho!\" — Amanda R. (MG)" },
-        { stars: "⭐⭐⭐", text: "\"Serviço ok, aprovou o Mercado Livre certinho como prometeu.\" — Gabriel P. (PR)" },
-        { stars: "⭐⭐⭐⭐⭐", text: "\"Top demais rapaziada, fiz a aprovação 50% e deu super certo!\" — Rodrigo M. (BA)" },
-        { stars: "⭐⭐⭐⭐", text: "\"Atendimento nota 10 no WhatsApp, respondeu rapidinho.\" — Camila F. (RS)" },
-        { stars: "⭐⭐⭐⭐⭐", text: "\"Peguei a conta com saldo e veio certinho, recomendo a todos.\" — Diego K. (SC)" },
-        { stars: "⭐⭐⭐", text: "\"Demorou um pouquinho na resposta mas cumpriu tudo certo.\" — Felipe N. (CE)" },
-        { stars: "⭐⭐⭐⭐⭐", text: "\"Seguidores do TikTok caíram em menos de 10 minutos. Muito bom!\" — Vanessa L. (GO)" },
-        { stars: "⭐⭐⭐⭐", text: "\"Serviço transparente e direto ao ponto. Valeu Bigode!\" — Thiago H. (PE)" },
-        { stars: "⭐⭐⭐⭐⭐", text: "\"Segunda vez que compro com o Bigode e não decepciona nunca.\" — Marcelo A. (DF)" },
-        { stars: "⭐⭐⭐", text: "\"Tudo certo no processo do cartão, aprovado sem crise.\" — Andreia V. (ES)" }
+        { stars: "⭐⭐⭐", text: "\"Serviço ok, aprovou e cumpriu tudo certinho.\" — Gabriel P. (PR)" },
+        { stars: "⭐⭐⭐⭐⭐", text: "\"Fiz a aprovação 50% e deu super certo! Recomendo.\" — Rodrigo M. (BA)" },
+        { stars: "⭐⭐⭐⭐", text: "\"Atendimento top no WhatsApp, tirou todas as dúvidas.\" — Camila F. (RS)" }
     ];
 
     let indexReview = 0;
@@ -186,50 +161,48 @@
 
         indexReview = (indexReview + 1) % listaReviews.length;
     }
-
     passarReview();
-    setInterval(passarReview, 4000); // Alterna a cada 4 segundos
+    setInterval(passarReview, 4000);
 
-    // Função Aprovação 50%
-    function solicitarAprovacao50() {
-        const nome = document.getElementById('pix-nome').value.trim();
-        const chave = document.getElementById('pix-chave').value.trim();
-        if (!nome || !chave) { alert('Preencha o nome e a chave PIX!'); return; }
-        
-        const msg = `Olá Bigode! Meu nome é ${encodeURIComponent(nome)}. Quero solicitar Aprovação 50%. A chave PIX cadastrada é: ${encodeURIComponent(chave)}. Só pagarei após a aprovação.`;
-        window.location.href = `https://wa.me/5532987194791?text=${msg}`;
-    }
+    // Seleção de Estrelas no Formulário
+    let selectedStars = 5;
+    const starSpans = document.querySelectorAll('#star-select span');
+    starSpans.forEach(star => {
+        star.addEventListener('click', () => {
+            selectedStars = parseInt(star.getAttribute('data-val'));
+            starSpans.forEach((s, idx) => {
+                if (idx < selectedStars) s.classList.add('active');
+                else s.classList.remove('active');
+            });
+        });
+    });
 
-    // Função Simulador de Seguidores (Calcula 10%)
-    function calcularSeguidores() {
-        const qtd = parseInt(document.getElementById('qtd-seguidores').value) || 0;
-        const valor = (qtd * 0.10).toFixed(2);
-        document.getElementById('valor-seguidores').innerText = "R$ " + valor.replace('.', ',');
-    }
+    // Função de Envio de Comentários
+    function enviarComentario() {
+        const nome = document.getElementById('user-name').value.trim();
+        const texto = document.getElementById('user-comment').value.trim();
 
-    function pedirSeguidores() {
-        const rede = document.getElementById('rede-social').value;
-        const perfil = document.getElementById('user-rede').value.trim();
-        const qtd = parseInt(document.getElementById('qtd-seguidores').value);
+        if (!texto) {
+            alert('Por favor, escreva um comentário.');
+            return;
+        }
 
-        if (!perfil) { alert('Digite seu perfil!'); return; }
-        if (!qtd || qtd < 100 || qtd > 100000) { alert('A quantidade deve ser entre 100 e 100.000 seguidores.'); return; }
+        const estrelasTexto = "⭐".repeat(selectedStars);
+        const mensagemFinal = nome ? `"${texto}" — ${nome}` : `"${texto}"`;
 
-        const valor = (qtd * 0.10).toFixed(2).replace('.', ',');
-        const msg = `Olá Bigode! Quero contratar ${qtd} seguidores no ${rede} para o perfil: ${encodeURIComponent(perfil)}. O valor da taxa de 10% ficou em R$ ${valor}.`;
-        window.location.href = `https://wa.me/5532987194791?text=${msg}`;
-    }
+        listaReviews.unshift({ stars: estrelasTexto, text: mensagemFinal });
 
-    // Função Shopee & Mercado Livre
-    function solicitarPlataforma() {
-        const plat = document.getElementById('plataforma-select').value;
-        const nome = document.getElementById('plataforma-nome').value.trim();
-        if (!nome) { alert('Preencha seu nome!'); return; }
+        document.getElementById('review-slider').innerHTML = `
+            <div class="stars">${estrelasTexto}</div>
+            <p class="rev-text">${mensagemFinal}</p>
+        `;
 
-        const msg = `Olá Bigode! Meu nome é ${encodeURIComponent(nome)}. Quero solicitar o serviço de ${encodeURIComponent(plat)}.`;
-        window.location.href = `https://wa.me/5532987194791?text=${msg}`;
+        document.getElementById('user-name').value = '';
+        document.getElementById('user-comment').value = '';
+        alert('Avaliação enviada com sucesso!');
     }
 </script>
 
 </body>
 </html>
+
