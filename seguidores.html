@@ -16,6 +16,7 @@
         
         .btn-enviar { display: block; width: 100%; background: var(--green); color: black; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 15px; border: none; cursor: pointer; font-size: 14px; }
         .btn-voltar { text-align: center; display: block; color: #666; margin-top: 20px; font-size: 12px; text-decoration: none; }
+        .label-select { font-size: 13px; color: #ddd; display: block; text-align: left; margin-top: 10px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -24,15 +25,17 @@
     <h1>Painel de Seguidores</h1>
     <p>Escolha a rede social e a quantidade desejada:</p>
 
+    <label class="label-select">Escolha onde você quer os seguidores:</label>
     <select id="rede-social">
         <option value="Instagram">Instagram</option>
         <option value="TikTok">TikTok</option>
     </select>
+    
     <input type="text" id="user-rede" placeholder="Seu @ ou link do perfil">
     <input type="number" id="qtd-seguidores" placeholder="Quantidade (Mín: 100 | Máx: 100.000)" min="100" max="100000" oninput="calcularSeguidores()">
     
     <div style="margin-top: 15px; font-size: 16px;">
-        Valor da taxa (6%): <strong id="valor-seguidores" style="color: var(--green);">R$ 0,00</strong>
+        Valor da taxa (4%): <strong id="valor-seguidores" style="color: var(--green);">R$ 0,00</strong>
     </div>
 
     <button onclick="pedirSeguidores()" class="btn-enviar">CONTRATAR SEGUIDORES</button>
@@ -43,7 +46,7 @@
 <script>
     function calcularSeguidores() {
         const qtd = parseInt(document.getElementById('qtd-seguidores').value) || 0;
-        const valor = (qtd * 0.06).toFixed(2);
+        const valor = (qtd * 0.04).toFixed(2);
         document.getElementById('valor-seguidores').innerText = "R$ " + valor.replace('.', ',');
     }
 
@@ -55,8 +58,8 @@
         if (!perfil) { alert('Digite seu perfil!'); return; }
         if (!qtd || qtd < 100 || qtd > 100000) { alert('A quantidade deve ser entre 100 e 100.000 seguidores.'); return; }
 
-        const valor = (qtd * 0.06).toFixed(2).replace('.', ',');
-        const msg = `Olá Bigode! Quero contratar ${qtd} seguidores no ${rede} para o perfil: ${encodeURIComponent(perfil)}. O valor da taxa de 6% ficou em R$ ${valor}.`;
+        const valor = (qtd * 0.04).toFixed(2).replace('.', ',');
+        const msg = `Olá Bigode! Quero contratar ${qtd} seguidores no ${rede} para o perfil: ${encodeURIComponent(perfil)}. O valor da taxa de 4% ficou em R$ ${valor}.`;
         window.location.href = `https://wa.me/5532987194791?text=${msg}`;
     }
 </script>
