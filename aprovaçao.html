@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprovação 50% | Trampos do Bigode</title>
+    <style>
+        :root { --bg: #0a0a0a; --card: #141414; --red: #ff2e2e; --text: #ffffff; --green: #00e676; }
+        body { font-family: sans-serif; background-color: var(--bg); color: var(--text); padding: 20px; display: flex; justify-content: center; margin: 0; }
+        .container { max-width: 400px; width: 100%; background: var(--card); border: 1px solid #333; padding: 25px; border-radius: 20px; text-align: center; }
+        
+        h1 { font-size: 20px; color: var(--green); margin-bottom: 5px; }
+        p { font-size: 12px; color: #aaa; margin-bottom: 20px; }
+        
+        select, input { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #444; background: #000; color: white; box-sizing: border-box; font-size: 14px; }
+        
+        .btn-enviar { display: block; width: 100%; background: var(--green); color: black; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 15px; border: none; cursor: pointer; font-size: 14px; }
+        .btn-voltar { text-align: center; display: block; color: #666; margin-top: 20px; font-size: 12px; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Aprovação 50%</h1>
+    <p>Pague somente APÓS a aprovação ser concluída!</p>
+
+    <label style="font-size: 12px; color: #888; display: block; text-align: left;">Escolha a Plataforma:</label>
+    <select id="plataforma">
+        <option value="Mercado Livre">Mercado Livre</option>
+        <option value="Shopee">Shopee</option>
+        <option value="iFood">iFood</option>
+    </select>
+
+    <input type="text" id="nome" placeholder="Seu Nome Completo">
+    <input type="text" id="pix" placeholder="Sua Chave PIX (Para receber)">
+    <input type="number" id="valor" placeholder="Valor que deseja aprovar (R$)">
+
+    <button onclick="enviarAprovacao()" class="btn-enviar">ENVIAR PARA APROVAÇÃO</button>
+
+    <a href="index.html" class="btn-voltar">← Voltar para o painel</a>
+</div>
+
+<script>
+    function enviarAprovacao() {
+        const plat = document.getElementById('plataforma').value;
+        const nome = document.getElementById('nome').value.trim();
+        const pix = document.getElementById('pix').value.trim();
+        const valor = document.getElementById('valor').value.trim();
+
+        if (!nome || !pix || !valor) {
+            alert('Por favor, preencha todos os campos!');
+            return;
+        }
+
+        const msg = `Olá Bigode! Quero solicitar Aprovação 50% (${plat}).%0A%0A- Nome: ${encodeURIComponent(nome)}%0A- Chave PIX: ${encodeURIComponent(pix)}%0A- Valor a aprovar: R$ ${encodeURIComponent(valor)}%0A%0ASó pagarei os 50% após o valor ser aprovado!`;
+
+        window.location.href = `https://wa.me/5532987194791?text=${msg}`;
+    }
+</script>
+
+</body>
+</html>
