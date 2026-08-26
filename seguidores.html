@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguidores | Trampos do Bigode</title>
+    <style>
+        :root { --bg: #0a0a0a; --card: #141414; --red: #ff2e2e; --text: #ffffff; --green: #00e676; }
+        body { font-family: sans-serif; background-color: var(--bg); color: var(--text); padding: 20px; display: flex; justify-content: center; margin: 0; }
+        .container { max-width: 400px; width: 100%; background: var(--card); border: 1px solid #333; padding: 25px; border-radius: 20px; text-align: center; }
+        
+        h1 { font-size: 20px; color: var(--green); margin-bottom: 5px; }
+        p { font-size: 12px; color: #aaa; margin-bottom: 20px; }
+        
+        select, input { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #444; background: #000; color: white; box-sizing: border-box; font-size: 14px; }
+        
+        .btn-enviar { display: block; width: 100%; background: var(--green); color: black; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 15px; border: none; cursor: pointer; font-size: 14px; }
+        .btn-voltar { text-align: center; display: block; color: #666; margin-top: 20px; font-size: 12px; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Painel de Seguidores</h1>
+    <p>Escolha a rede social e a quantidade desejada:</p>
+
+    <select id="rede-social">
+        <option value="Instagram">Instagram</option>
+        <option value="TikTok">TikTok</option>
+    </select>
+    <input type="text" id="user-rede" placeholder="Seu @ ou link do perfil">
+    <input type="number" id="qtd-seguidores" placeholder="Quantidade (Mín: 100 | Máx: 100.000)" min="100" max="100000" oninput="calcularSeguidores()">
+    
+    <div style="margin-top: 15px; font-size: 16px;">
+        Valor da taxa (6%): <strong id="valor-seguidores" style="color: var(--green);">R$ 0,00</strong>
+    </div>
+
+    <button onclick="pedirSeguidores()" class="btn-enviar">CONTRATAR SEGUIDORES</button>
+
+    <a href="index.html" class="btn-voltar">← Voltar para o painel</a>
+</div>
+
+<script>
+    function calcularSeguidores() {
+        const qtd = parseInt(document.getElementById('qtd-seguidores').value) || 0;
+        const valor = (qtd * 0.06).toFixed(2);
+        document.getElementById('valor-seguidores').innerText = "R$ " + valor.replace('.', ',');
+    }
+
+    function pedirSeguidores() {
+        const rede = document.getElementById('rede-social').value;
+        const perfil = document.getElementById('user-rede').value.trim();
+        const qtd = parseInt(document.getElementById('qtd-seguidores').value);
+
+        if (!perfil) { alert('Digite seu perfil!'); return; }
+        if (!qtd || qtd < 100 || qtd > 100000) { alert('A quantidade deve ser entre 100 e 100.000 seguidores.'); return; }
+
+        const valor = (qtd * 0.06).toFixed(2).replace('.', ',');
+        const msg = `Olá Bigode! Quero contratar ${qtd} seguidores no ${rede} para o perfil: ${encodeURIComponent(perfil)}. O valor da taxa de 6% ficou em R$ ${valor}.`;
+        window.location.href = `https://wa.me/5532987194791?text=${msg}`;
+    }
+</script>
+
+</body>
+</html>
