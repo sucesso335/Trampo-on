@@ -135,7 +135,7 @@
     setInterval(updateSales, 5000);
     updateSales();
 
-    // Carrossel de Depoimentos DIVERSOS (Sem repetição estática)
+    // Carrossel de Depoimentos
     const listaReviews = [
         { stars: "⭐⭐⭐⭐⭐", text: "\"Trampo muito rápido e 100% seguro! Nota 10 pro Bigode.\" — Marcos S. (SP)" },
         { stars: "⭐⭐⭐⭐", text: "\"Muito bom, demorou uns 5 minutinhos mas deu tudo certo.\" — Lucas T. (RJ)" },
@@ -164,7 +164,7 @@
     passarReview();
     setInterval(passarReview, 4000);
 
-    // Seleção de Estrelas no Formulário
+    // Seleção de Estrelas
     let selectedStars = 5;
     const starSpans = document.querySelectorAll('#star-select span');
     starSpans.forEach(star => {
@@ -177,16 +177,35 @@
         });
     });
 
-    // Função de Envio de Comentários
+    // Função de Envio com Filtro Inteligente (Opção 2)
     function enviarComentario() {
         const nome = document.getElementById('user-name').value.trim();
         const texto = document.getElementById('user-comment').value.trim();
+        const textoMinusculo = texto.toLowerCase();
 
         if (!texto) {
             alert('Por favor, escreva um comentário.');
             return;
         }
 
+        // Palavras proibidas de reclamação/ofensas
+        const palavrasProibidas = [
+            "ruim", "péssimo", "pessimo", "lixo", "golpe", "fraude", 
+            "demora", "demorou", "horrível", "horrivel", "nao recebi", 
+            "não recebi", "enganação", "enganacao", "mentira", "roubo", "lento"
+        ];
+        
+        const temReclamacao = palavrasProibidas.some(palavra => textoMinusculo.includes(palavra));
+
+        // Se for menos de 3 estrelas OU tiver palavras negativas
+        if (selectedStars < 3 || temReclamacao) {
+            document.getElementById('user-name').value = '';
+            document.getElementById('user-comment').value = '';
+            alert('Sua avaliação foi enviada para análise da equipe! Obrigado pelo feedback.');
+            return; // Encerra sem postar no carrossel
+        }
+
+        // Se for uma avaliação positiva (3, 4 ou 5 estrelas)
         const estrelasTexto = "⭐".repeat(selectedStars);
         const mensagemFinal = nome ? `"${texto}" — ${nome}` : `"${texto}"`;
 
@@ -205,4 +224,3 @@
 
 </body>
 </html>
-
