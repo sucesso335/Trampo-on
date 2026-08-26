@@ -121,12 +121,16 @@
     atualizarStatus();
     setInterval(atualizarStatus, 60000);
 
-    // Sistema de Avaliações
+    // Avaliações Variadas (3, 4 e 5 estrelas - Positivas e Médias)
     const reviews = [
         { stars: "⭐⭐⭐⭐⭐", text: "Trampo muito rápido, nota 10!" },
         { stars: "⭐⭐⭐⭐⭐", text: "100% seguro, fiz e recebi na hora." },
+        { stars: "⭐⭐⭐⭐", text: "Muito bom, demorou só uns 5 minutinhos mas deu tudo certo." },
         { stars: "⭐⭐⭐⭐⭐", text: "O Bigode é o brabo, top demais!" },
-        { stars: "⭐⭐⭐⭐⭐", text: "Segunda vez que faço, tudo certo." }
+        { stars: "⭐⭐⭐", text: "Serviço ok, cumpriu o que prometeu." },
+        { stars: "⭐⭐⭐⭐", text: "Atendimento bom e transparente, recomendo." },
+        { stars: "⭐⭐⭐⭐⭐", text: "Segunda vez que faço, tudo certo." },
+        { stars: "⭐⭐⭐", text: "Deu tudo certo no final, valeu a pena." }
     ];
 
     function updateContent() {
@@ -135,13 +139,13 @@
             <div class="stars">${rev.stars}</div>
             <div class="rev-text">${rev.text}</div>
         `;
-        const names = ["João de MG", "Maria do RJ", "Carlos de SP"];
+        const names = ["João de MG", "Maria do RJ", "Carlos de SP", "Lucas de BA", "Fernanda de SC"];
         document.getElementById('live-sale').innerText = names[Math.floor(Math.random() * names.length)] + " acabou de comprar!";
     }
     setInterval(updateContent, 4000);
     updateContent();
 
-    // Seleção de Estrelas
+    // Seleção de Estrelas no Formulário
     let selectedStars = 5;
     const starSpans = document.querySelectorAll('#star-select span');
     starSpans.forEach(star => {
@@ -182,3 +186,4 @@
 
 </body>
 </html>
+
