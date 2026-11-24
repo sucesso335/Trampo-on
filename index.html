@@ -102,4 +102,120 @@
         </div>
         <input type="text" id="user-name" placeholder="Seu nome">
         <textarea id="user-comment" rows="2" placeholder="Escreva seu comentário..."></textarea>
-        <button onclick="enviarComentario()">
+        <button onclick="enviarComentario()">Enviar Avaliação</button>
+    </div>
+
+    <!-- Rodapé de Estatísticas -->
+    <div class="stats-footer">
+        <div class="stat-card">
+            <strong style="color: var(--green); font-size: 16px;">+1.420</strong><br>
+            <span style="color: #888;">Clientes Atendidos</span>
+        </div>
+        <div class="stat-card">
+            <strong style="color: #FFD700; font-size: 16px;">4.9 ★</strong><br>
+            <span style="color: #888;">Avaliação Média</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 1. Notificações de Movimentação ao Vivo
+    const movimentacoes = [
+        "🔥 Lucas M. acabou de acessar: Saldo iFood",
+        "✅ Mariana S. garantiu: Aprovação 50% Shopee",
+        "🚀 Pedro H. adquiriu: 5k Seguidores Insta",
+        "💰 Rafael T. consultou: Empréstimo até 3k",
+        "💳 Gabriel L. acessou: Cartão Acesso Rápido"
+    ];
+    let movIndex = 0;
+    const liveSaleEl = document.getElementById('live-sale');
+
+    function atualizarMovimentacao() {
+        liveSaleEl.innerText = movimentacoes[movIndex];
+        movIndex = (movIndex + 1) % movimentacoes.length;
+    }
+    atualizarMovimentacao();
+    setInterval(atualizarMovimentacao, 4000);
+
+    // 2. Depoimentos Rotativos
+    const depoimentos = [
+        { nome: "Carlos Eduardo", estrelas: 5, texto: "Atendimento rápido demais, tudo certinho como combinado!" },
+        { nome: "Amanda Oliveira", estrelas: 5, texto: "Seguidores caíram na hora, recomendo muito o trampo do Bigode." },
+        { nome: "Felipe Santos", estrelas: 5, texto: "Super confiável, tirei minhas dúvidas no WhatsApp e deu tudo certo." }
+    ];
+    let revIndex = 0;
+    const reviewSlider = document.getElementById('review-slider');
+
+    function renderizarDepoimento() {
+        const atual = depoimentos[revIndex];
+        const estrelasHtml = '★'.repeat(atual.estrelas) + '☆'.repeat(5 - atual.estrelas);
+        
+        reviewSlider.style.opacity = 0;
+        setTimeout(() => {
+            reviewSlider.innerHTML = `
+                <div class="stars">${estrelasHtml}</div>
+                <p class="rev-text">"${atual.texto}"</p>
+                <p style="font-size: 11px; color: #888; margin-top: 6px;">— ${atual.nome}</p>
+            `;
+            reviewSlider.style.opacity = 1;
+        }, 300);
+
+        revIndex = (revIndex + 1) % depoimentos.length;
+    }
+    renderizarDepoimento();
+    setInterval(renderizarDepoimento, 5000);
+
+    // 3. Seleção de Estrelas no Formulário
+    let notaSelecionada = 5;
+    const stars = document.querySelectorAll('#star-select span');
+
+    function atualizarEstrelas(valor) {
+        stars.forEach(s => {
+            if (parseInt(s.getAttribute('data-val')) <= valor) {
+                s.classList.add('active');
+            } else {
+                s.classList.remove('active');
+            }
+        });
+    }
+    atualizarEstrelas(5);
+
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            notaSelecionada = parseInt(star.getAttribute('data-val'));
+            atualizarEstrelas(notaSelecionada);
+        });
+    });
+
+    // 4. Envio de Novo Comentário
+    function enviarComentario() {
+        const nomeInput = document.getElementById('user-name');
+        const commentInput = document.getElementById('user-comment');
+        
+        const nome = nomeInput.value.trim();
+        const texto = commentInput.value.trim();
+
+        if (!nome || !texto) {
+            alert("Por favor, preencha seu nome e comentário!");
+            return;
+        }
+
+        depoimentos.push({
+            nome: nome,
+            estrelas: notaSelecionada,
+            texto: texto
+        });
+
+        revIndex = depoimentos.length - 1;
+        renderizarDepoimento();
+
+        nomeInput.value = '';
+        commentInput.value = '';
+        notaSelecionada = 5;
+        atualizarEstrelas(5);
+        alert("Avaliação enviada com sucesso!");
+    }
+</script>
+
+</body>
+</html>
