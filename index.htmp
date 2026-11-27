@@ -1,8 +1,4 @@
- html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+me="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trampos do Bigode</title>
     <style>
         :root { --bg: #0a0a0a; --card: #141414; --red: #ff2e2e; --text: #ffffff; --green: #00e676; }
